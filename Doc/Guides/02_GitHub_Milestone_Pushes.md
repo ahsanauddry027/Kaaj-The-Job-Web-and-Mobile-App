@@ -4,7 +4,7 @@
 
 Every command below is for **PowerShell** on Windows 11. Copy one block at a time and read what it prints before going on.
 
-> **Plan changed on 19 November 2026.** The whole folder now goes to `SpringBoot_PostgreSQL_Api` (your full copy), and the Android
+> **Plan changed on 19 November 2026.** The whole folder is now in `Kaaj-The-Job-Web-and-Mobile-App` (your full copy; `SpringBoot_PostgreSQL_Api` stays as Assignment 03), and the Android
 > app goes to its own repository from a separate copy, per milestone. Follow **`07_Push_Both_Apps_Separately.md`** for that.
 > This guide's Part B step 3 (video), Part B step 5 (APK release), Part C, Part D step 3 and Part E (fixes) still apply.
 

@@ -1,101 +1,184 @@
 <div align="center">
 
-# কাজ · Kaaj – The Job
+<img src="Doc/assets/kaaj-banner.svg" alt="কাজ · Kaaj – The Job: verified work nearby, wages always shown, job seekers never pay" width="100%"/>
 
-### Spring Boot backend · React (TypeScript) web app · Kotlin (Jetpack Compose) Android app
+<br/>
 
-*Verified work nearby. Wages always shown. Job seekers never pay.*
+**A Bangla-first job platform for Bangladesh** that connects job seekers, first-time and blue-collar workers first,<br/>
+with **verified employers**. One Spring Boot backend serves a React web app and a Kotlin Android app.
 
-**CSE471: System Analysis and Design** · Fall 2026 · Group 08 · Member-3: Ahsan Habib (22201027)
+<br/>
+
+![Java](https://img.shields.io/badge/Java-25-ED8B00?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.1-6DB33F?logo=springboot&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2B-4169E1?logo=postgresql&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-2.4-7F52FF?logo=kotlin&logoColor=white)
+![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4?logo=jetpackcompose&logoColor=white)
+
+![CSE471](https://img.shields.io/badge/CSE471-Group_08%2C_Member--3-1D4ED8)
+![Kotlin course](https://img.shields.io/badge/Kotlin_course-single_member-7F52FF)
+![Languages](https://img.shields.io/badge/UI-Bangla_%2B_English-0E7490)
+![Free AI](https://img.shields.io/badge/AI-Gemini_%2F_Groq_(optional%2C_free)-8E75B2?logo=googlegemini&logoColor=white)
+![Status](https://img.shields.io/badge/status-built%2C_testing_next-F59E0B)
+
+[**Features**](#-features) · [**Screenshots**](#-screenshots) · [**Architecture**](#-architecture) · [**Quick start**](#-quick-start) · [**API**](#-api) · [**Guides**](#-guides)
 
 </div>
 
 ---
 
-> **Start here:** [`Doc/PROJECT_CONTEXT.md`](Doc/PROJECT_CONTEXT.md) describes the whole project (backend, web app, Android app),
-> what has been built and checked, and what is still left. Guides: [`Doc/Guides/`](Doc/Guides/).
+> [!TIP]
+> **New here?** Start with [`Doc/PROJECT_CONTEXT.md`](Doc/PROJECT_CONTEXT.md): the whole project in one file, what is built and
+> checked, and what is still left. To run everything on Windows, follow [`Doc/Guides/04_Run_Backend_Web_Android.pdf`](Doc/Guides/04_Run_Backend_Web_Android.pdf).
 
-This repository holds **the complete project in one place**: one Spring Boot backend, the React web app and the Kotlin Android app,
-with every document. The two apps are also submitted separately (see [Where each app is submitted](#where-each-app-is-submitted)).
+## 🧭 At a glance
 
-| Folder | What is inside |
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### 🌐 Web app
+`web/` · React + TypeScript
+
+The **CSE471 group project** (Member-3's modules): employer profile and verification, post and manage jobs, scam screening and
+moderation, and the AI job-post assistant.
+
+</td>
+<td width="33%" valign="top">
+
+### 📱 Android app
+`android/` · Kotlin + Jetpack Compose
+
+The **Kotlin course project** (single member), with every role: employers, admins **and job seekers**: search near me, save,
+apply in one tap, track, ranked applicants.
+
+</td>
+<td width="33%" valign="top">
+
+### ⚙️ Backend
+`src/` · Spring Boot 4.1 · Java 25
+
+One API for both apps on port **1027**: 7 modules, 15 tables (Flyway V1–V240), messages in Bangla and English, session
+cookie + CSRF.
+
+</td>
+</tr>
+</table>
+
+| | In numbers |
 |---|---|
-| [`src/`](src/) | **Spring Boot backend** (Java 25, Spring Boot 4.1, PostgreSQL), shared by both apps; port 1027 |
-| [`web/`](web/) | **Web app** (React + TypeScript): the CSE471 group project, Member-3's three modules |
-| [`android/`](android/) | **Android app** (Kotlin + Jetpack Compose): the Kotlin course project, every role ([`android/README.md`](android/README.md)) |
-| [`Doc/`](Doc/) | Project context, guides 01–07, AI declaration and prompts, diagrams, screenshots, the planning documents |
-| [`docs/`](docs/) | The first build guide (PDF) and the plan for Member-3's first two features |
-| [`postman/`](postman/) | API requests for testing (`Kaaj_Member3.postman_collection.json`) |
-| `pom.xml`, `mvnw`, `mvnw.cmd`, `.mvn/` | Maven build; `.\mvnw.cmd -Pweb package` also builds the web app into the jar |
-| `.env.example`, `compose.yaml` | Settings template (copy to `.env`, which is never committed) and an optional PostgreSQL in Docker |
+| 🧱 **Backend modules** | `identity` · `employer` · `job` · `trust` · `seeker` · `application` · `shared` |
+| 🧪 **Tests** | 24 JUnit test files (end-to-end ones with Testcontainers) · 33 web tests · 29 Android tests · MVC layer checks |
+| 📚 **Documents** | 7 guides (Markdown + PDF), the project context, AI declaration and prompts, diagrams, 33 screenshots |
+| 💸 **Cost** | Every tool and library is free; the AI keys are optional free tiers |
+| 🔒 **Never committed** | `.env` (passwords) and uploaded files (`data/`) |
 
-## What this is
+## ✨ Features
 
-The Kaaj web app with all of Member-3's features from the CSE471 functional requirements (Group 08):
+<table>
+<tr>
+<th width="33%">🏢 Employers</th>
+<th width="33%">🛡️ Admins</th>
+<th width="33%">👷 Job seekers <sub>(Android)</sub></th>
+</tr>
+<tr>
+<td valign="top">
 
-| # | Feature | What it does |
-|---|---------|--------------|
-| 3 | **Employer profile and verification** | Employers create a business profile (name, type, address, map pin, contact person, phone) and upload a trade licence or national ID. Admins approve or reject it with a reason. Approved employers get a **Verified** badge on all their job posts. |
-| 4 | **Post and manage jobs** | Verified employers post a job with a title, category, openings, **required** wage range, location, hours, shift and requirements; they edit, pause, close or repost it. A post closes automatically 30 days after it is first published. An unverified employer's post waits as a draft and goes live as soon as the admin approves the business. |
-| Module 2 | **Scam screening and moderation** | Every submitted post is checked before it goes live: asking job seekers for money **blocks** it; phone numbers / "WhatsApp only", easy-money promises or an overseas job without a licence number send it to **review**; an optional free AI check can add a review flag. Users report posts (three reports hide one). Admins work a moderation queue with the red flags highlighted, and remove the post, suspend the employer, or dismiss, always with a note and an audit entry. |
-| Module 3 | **AI job-post assistant** | The employer types one sentence in Bangla, Banglish or English ("2 jon pickup driver lagbe, Tongi, beton 16-20 hajar, sokal 8ta theke sondha 6ta"); Kaaj drafts the title and description in both languages, fills in openings, wage, hours and place, asks what is missing, and flags problems. "Use this draft" fills the form. Uses free Gemini or Groq when a key is set, templates otherwise. |
+- Business profile with a **map pin**
+- Trade licence or NID upload → **Verified** badge
+- **Post a job** in 4 steps; the wage is required
+- Pause, resume, close, **repost**; posts close after 30 days
+- **"Write it for me"**: one sentence → a full post in Bangla and English
+- See **why a post is in review** or blocked
+- Applicants **ranked by a match score** <sub>(Android)</sub>
 
-**Two front ends, one backend.** The same Spring Boot API serves:
+</td>
+<td valign="top">
 
-- the **web app** (`web/`, React + TypeScript) — the CSE471 group version, with Member-3's features above;
-- the **Android app** (`android/`, Kotlin + Jetpack Compose) — the single-member version, with every role:
-  sign-in, employer verification, posting and managing jobs, the admin queue, and the job seeker side
-  (profile, job search with distance, saved jobs, one-click apply and tracking, and the employer's ranked applicants).
-  See [`android/README.md`](android/README.md).
+- **Verification queue**: open the document, approve, or reject with a reason
+- **Moderation queue**: posts caught by screening or reported by users, red flags **highlighted**
+- Remove a post, **suspend** an employer, or dismiss, always with a note
+- Every decision in the **audit log**
 
-Also included, from Member-3's shared-setup work: the database migrations, the taxonomy search (Bangla, Banglish and English, spelling-tolerant), the first admin account, the audit log and the shared file upload. A simple email-and-password sign-in **stands in** for Member-1's Google sign-in and Member-2's email codes until they are merged.
+</td>
+<td valign="top">
 
-## Run it
+- Profile with a **completeness meter**
+- **Search near me**: keyword (Bangla, Banglish or English, typo-tolerant), distance, wage, type, shift
+- **Save** jobs, **apply in one tap**
+- Track each application on a **timeline**; withdraw
+- **Report** a scam post <sub>(web)</sub>
 
-You need **JDK 25**, **Node.js 24+** and **PostgreSQL** (16 or newer; 18 recommended).
+</td>
+</tr>
+</table>
 
-1. Create an empty database named `kaaj` (pgAdmin → Databases → Create, or `psql -U postgres -c "CREATE DATABASE kaaj;"`).
-2. Copy `.env.example` to `.env` and set `DB_PASSWORD` (and the admin email and password if you like).
-3. Start the backend (port **1027**), with the demo data:
+### 🎓 Member-3's CSE471 modules
 
-   ```powershell
-   .\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=dev"
-   ```
+| Module | Feature | Highlights |
+|:---:|---|---|
+| **1** | 🏢 Employer profile and verification<br/>📝 Post and manage jobs | Map pin (Leaflet + OpenStreetMap), document checks, verification states, a 4-step form with Bangla digits, status rules, 30-day expiry, repost |
+| **2** | 🛡️ Scam screening and moderation | Bangla/Banglish/English rule checks: **asking job seekers for money blocks a post**; phone numbers, "WhatsApp only", easy money or overseas jobs without a licence go to review; optional free AI check; 3 reports hide a post; moderation queue with highlights; suspension |
+| **3** | 🤖 AI job-post assistant | `2 jon pickup driver lagbe, Tongi, beton 16-20 hajar, sokal 8ta theke sondha 6ta` → title and description in **both languages**, openings, wage, hours and place filled in, questions about what is missing, red flags. Works **without an AI key** (templates); uses free Gemini or Groq when a key is set |
 
-   Flyway creates every table on the first start. API docs: http://localhost:1027/swagger-ui.html
+## 📸 Screenshots
 
-4. In a second terminal, start the web app:
+<table>
+<tr>
+<td width="50%"><img src="Doc/screenshots/readme/01-employer-dashboard.png" alt="Employer dashboard"/><br/><sub><b>Employer dashboard</b>: posts per status and the verification banner</sub></td>
+<td width="50%"><img src="Doc/screenshots/readme/02-post-a-job.png" alt="Post a job, step 2"/><br/><sub><b>Post a job</b>: four steps; the wage range is required</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="Doc/screenshots/readme/03-ai-job-post-assistant.png" alt="AI job-post assistant"/><br/><sub><b>AI job-post assistant</b>: one Banglish sentence becomes a two-language draft</sub></td>
+<td width="50%"><img src="Doc/screenshots/readme/04-moderation-queue.png" alt="Moderation queue"/><br/><sub><b>Moderation queue</b>: the scam phrases are highlighted for the admin</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="Doc/screenshots/readme/05-why-in-review.png" alt="Why a post is in review"/><br/><sub><b>Screening notice</b>: the employer sees why a post is held</sub></td>
+<td width="50%"><img src="Doc/screenshots/readme/06-verification-queue.png" alt="Verification queue"/><br/><sub><b>Verification queue</b>: the admin checks the trade licence</sub></td>
+</tr>
+</table>
 
-   ```powershell
-   cd web
-   npm install
-   npm run dev
-   ```
+<sub>All 33 screenshots (Bangla and English, phone width) are in [`Doc/screenshots/web/`](Doc/screenshots/web/).</sub>
 
-   Open http://localhost:5173. Sign in as `karim@demo.kaaj` (verified employer), `tongigarments@demo.kaaj` (not verified yet), `quickjobs@demo.kaaj` (posts caught by scam screening) or the admin from `.env` (**Moderation** in the menu). Demo password: `Kaaj@12345`.
+## 🧩 Architecture
 
-   Optional: put a free `GEMINI_API_KEY` (https://aistudio.google.com) in `.env` so the job-post assistant and the scam check use AI. Without it they use templates and rules.
-
-5. For the **Android app**, open the `android` folder in Android Studio and run it on an emulator
-   (it talks to http://10.0.2.2:1027). Job seeker demo accounts: `rahim@demo.kaaj`, `sumi@demo.kaaj`, `jamal@demo.kaaj`.
-
-**One jar for everything:** `.\mvnw.cmd -Pweb package` builds the React app into the jar; then `java -jar target\kaaj-0.1.0-SNAPSHOT.jar` serves both at http://localhost:1027.
-
-## Tests
-
-```powershell
-.\mvnw.cmd test        # Java: rules, status flows, file checks, module boundaries; the end-to-end API tests need Docker Desktop (skipped without it)
-cd web; npm test        # TypeScript: form rules, formatting, the verification banner, translations, red-flag highlighting, the assistant
+```mermaid
+flowchart LR
+    subgraph Clients
+        W["🌐 Web app<br/>React + TypeScript<br/>employers and admins"]
+        A["📱 Android app<br/>Kotlin + Jetpack Compose<br/>every role"]
+    end
+    subgraph Server["⚙️ Spring Boot 4.1 · port 1027"]
+        C["Controllers<br/>/api/v1"]
+        S["Services and rules<br/>identity · employer · job · trust<br/>seeker · application · shared"]
+    end
+    DB[("🐘 PostgreSQL<br/>15 tables · Flyway")]
+    AI["✨ Gemini / Groq<br/>optional, free"]
+    W -->|"JSON, session cookie + CSRF"| C
+    A -->|"the same API"| C
+    C --> S
+    S --> DB
+    S -.->|"drafts and scam check"| AI
 ```
 
-Both test runs also check the MVC layers: `MvcLayersTest` fails if a controller reaches the database, and `web/src/architecture.test.ts`
-fails if a page calls the server directly.
+- **One backend, two apps.** Both apps call the same `/api/v1` endpoints with the same session cookie and CSRF token; the browser
+  handles cookies itself, the Android app uses `KaajCookieJar` + `CsrfInterceptor`. Details: [guide 01](Doc/Guides/01_One_Backend_Two_Apps.md).
+- **Modules, not a monolith of packages.** Each module (`app.kaaj.*`) exposes only its top-level types; `ModularityTests` (Spring Modulith) fails the build otherwise.
+- **MVC.** Controllers only read the request and call a service; services, entities and repositories are the model; JSON records are
+  the views, drawn by React pages that reach the server only through `features/*/api.ts` hooks. `MvcLayersTest` and
+  `architecture.test.ts` keep it that way. Details: [guide 06](Doc/Guides/06_MVC_Architecture.md).
 
-Android (in `android/`): `.\gradlew.bat test` — form rules, formatting, and the HTTP layer (cookies, CSRF, errors) against a fake server.
+<details>
+<summary><b>📐 The MVC layers in one picture</b></summary>
+<br/>
+<img src="Doc/Guides/img/mvc_web_app.svg" alt="How a click travels through the View, Controller and Model layers" width="100%"/>
+</details>
 
-Postman: import `postman/Kaaj_Member3.postman_collection.json` and run the folders in order (folder 5 is the job seeker side).
-
-## How it is built
+<details>
+<summary><b>🗂️ Folder structure</b></summary>
 
 ```
 src/main/java/app/kaaj/
@@ -122,11 +205,74 @@ web/src/
 └── i18n/                        bn.json (default) and en.json
 ```
 
-Each module is a package under `app.kaaj`; other modules use only its top-level types (`EmployerDirectory`, `JobDirectory`, events), never its `internal` package. `ModularityTests` (Spring Modulith) fails the build if that rule is broken.
+</details>
 
-**MVC:** controllers (`*Controller.java`) only read the request and call a service; the model is the services, entities and repositories; the views are the JSON records (`JobViews`, `TrustViews`) drawn by the React pages. In the web app, pages call the server only through the `features/*/api.ts` hooks. `MvcLayersTest` and `web/src/architecture.test.ts` check both rules. See [`Doc/Guides/06_MVC_Architecture.md`](Doc/Guides/06_MVC_Architecture.md).
+## 🚀 Quick start
 
-### API
+> **You need:** JDK 25 · Node.js 24+ · PostgreSQL 16+ (18 recommended) · Android Studio for the app
+
+**1. Database and settings**
+
+```powershell
+psql -U postgres -c "CREATE DATABASE kaaj;"
+Copy-Item .env.example .env        # then set DB_PASSWORD in .env
+```
+
+**2. Backend** (port 1027, with demo data; Flyway creates every table)
+
+```powershell
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=dev"
+```
+
+API docs: <http://localhost:1027/swagger-ui.html>
+
+**3. Web app** (in a second window)
+
+```powershell
+cd web
+npm install
+npm run dev                        # http://localhost:5173
+```
+
+**4. Android app**: open the `android` folder in Android Studio and run it on an emulator (it talks to `http://10.0.2.2:1027`);
+for a real phone see [`android/README.md`](android/README.md).
+
+> [!NOTE]
+> **Optional free AI.** Put a `GEMINI_API_KEY` from <https://aistudio.google.com> in `.env` and restart the backend. Without a key,
+> the assistant writes the draft from templates and screening uses its rules, so everything still works offline.
+
+**One jar for everything:** `.\mvnw.cmd -Pweb package` builds the web app into the jar; `java -jar target\kaaj-0.1.0-SNAPSHOT.jar`
+then serves both at <http://localhost:1027>.
+
+### 👥 Demo accounts
+
+Password for every demo account: **`Kaaj@12345`**
+
+| Account | Role | Try this |
+|---|---|---|
+| `karim@demo.kaaj` | 🏢 Employer, verified | Post a job; try **Write it for me** |
+| `tongigarments@demo.kaaj` | 🏢 Employer, not verified | Upload a licence; watch the post wait as a draft |
+| `quickjobs@demo.kaaj` | 🏢 Employer, verified | One post **blocked** by screening, one **in review** |
+| `rahim@demo.kaaj` · `sumi@demo.kaaj` · `jamal@demo.kaaj` | 👷 Job seekers | Search, save, apply, track (Android) |
+| `admin@kaaj.local` / `Admin@12345` | 🛡️ Admin | **Employer verification** and **Moderation** (from `.env`) |
+
+## 🧪 Tests
+
+```powershell
+.\mvnw.cmd test                   # Java: rules, status flows, files, modules, MVC layers; end-to-end tests need Docker Desktop
+cd web; npm test                  # TypeScript: form rules, formatting, highlighting, the assistant, MVC layers
+cd android; .\gradlew.bat test    # Kotlin: form rules, formatting, the HTTP layer against a fake server
+```
+
+Postman: import [`postman/Kaaj_Member3.postman_collection.json`](postman/Kaaj_Member3.postman_collection.json) and run the folders in order.
+
+## 🔌 API
+
+All endpoints are under `/api/v1`. Errors are RFC 9457 ProblemDetail in the request's language (`Accept-Language: bn` or `en`).
+
+<details>
+<summary><b>Show every endpoint</b></summary>
+<br/>
 
 | Method | Path | Who | Purpose |
 |---|---|---|---|
@@ -157,35 +303,53 @@ Each module is a package under `app.kaaj`; other modules use only its top-level 
 | POST | `/api/v1/admin/cases/{id}/decision` | admin | `REMOVE_POST` or `SUSPEND_EMPLOYER` (a note is required), or `DISMISS` |
 | GET | `/api/v1/files/{key}` | depends | A stored file, after its owner module's check (documents: admins only) |
 
-## Where each app is submitted
+</details>
+
+## 📦 Where each app is submitted
 
 | App | Course | Repository | Pushed per |
 |---|---|---|---|
-| Web app (`web/` + the backend modules of Member-3) | CSE471, Group 08 | The group's repository | **Module**: 1, 2, 3 (one branch and pull request each) |
-| Android app (`android/` + the backend) | Kotlin/Android course (instructor `rahman9909`) | A separate repository of its own | **Milestone**: `milestone-2` (Sat 5 Dec 2026), `final` (Sat 12 Dec 2026) |
-| Everything | — | **This repository** | The full project and its history |
+| 🌐 Web app (`web/` + Member-3's backend modules) | CSE471, Group 08 | The group's repository | **Module**: 1 → 2 → 3, one branch and pull request each |
+| 📱 Android app (`android/` + the backend) | Kotlin/Android course (instructor `rahman9909`) | Its own repository | **Milestone**: `milestone-2` (Sat 5 Dec 2026) → `final` (Sat 12 Dec 2026) |
+| 🗃️ Everything | — | **This repository** | The full project and its history |
 
-How to make the two copies, which files go in each push, and the Git commands:
-[`Doc/Guides/07_Push_Both_Apps_Separately.md`](Doc/Guides/07_Push_Both_Apps_Separately.md) (exact file lists in
-[`Doc/Guides/05_GitHub_Files_Per_Module.md`](Doc/Guides/05_GitHub_Files_Per_Module.md) and [`Doc/Guides/github-files/`](Doc/Guides/github-files/)).
+How to copy, which files go in each push, and every Git command: [guide 07](Doc/Guides/07_Push_Both_Apps_Separately.md), with the
+exact file lists in [guide 05](Doc/Guides/05_GitHub_Files_Per_Module.md).
 
-## Guides
+## 📚 Guides
 
-| Guide | What it covers |
-|---|---|
-| [`docs/Kaaj_Member3_Build_Guide.pdf`](docs/Kaaj_Member3_Build_Guide.pdf) | The first guide: start the project, or build Member-3's first two features step by step |
-| [`01_One_Backend_Two_Apps`](Doc/Guides/01_One_Backend_Two_Apps.md) | How one backend serves the web app and the Android app; problems and fixes |
-| [`02_GitHub_Milestone_Pushes`](Doc/Guides/02_GitHub_Milestone_Pushes.md) | Tags, the instructor's access and Git fixes for the Android course |
-| [`03_Business_Model`](Doc/Guides/03_Business_Model.md) | Business model for both apps |
-| [`04_Run_Backend_Web_Android`](Doc/Guides/04_Run_Backend_Web_Android.md) | Run the backend, the web app and the Android app on Windows 11 |
-| [`05_GitHub_Files_Per_Module`](Doc/Guides/05_GitHub_Files_Per_Module.md) | Exactly which files go in each web module push and each Android commit |
-| [`06_MVC_Architecture`](Doc/Guides/06_MVC_Architecture.md) | How the web app follows Model–View–Controller, file by file |
-| [`07_Push_Both_Apps_Separately`](Doc/Guides/07_Push_Both_Apps_Separately.md) | Copy the project, then push the web app per module and the Android app per milestone |
+| | Guide | What it covers |
+|:---:|---|---|
+| 🏁 | [Build guide (PDF)](docs/Kaaj_Member3_Build_Guide.pdf) | Start the project, or build Member-3's first two features step by step |
+| 1️⃣ | [One backend, two apps](Doc/Guides/01_One_Backend_Two_Apps.md) | How one backend serves the web app and the Android app; problems and fixes |
+| 2️⃣ | [GitHub milestone pushes](Doc/Guides/02_GitHub_Milestone_Pushes.md) | Tags, the instructor's access, Git fixes |
+| 3️⃣ | [Business model](Doc/Guides/03_Business_Model.md) | Customers, prices, economics, go-to-market, KPIs, risks |
+| 4️⃣ | [Run everything](Doc/Guides/04_Run_Backend_Web_Android.md) | The backend, the web app and the Android app on Windows 11 |
+| 5️⃣ | [Files per module](Doc/Guides/05_GitHub_Files_Per_Module.md) | Exactly which files go in each web module push and each Android commit |
+| 6️⃣ | [MVC architecture](Doc/Guides/06_MVC_Architecture.md) | Every file's layer, module by module, with viva answers |
+| 7️⃣ | [Push both apps separately](Doc/Guides/07_Push_Both_Apps_Separately.md) | Web per module, Android per milestone |
 
-Every guide has a PDF next to it. The AI declaration and every prompt are in [`Doc/AI_Declaration.md`](Doc/AI_Declaration.md) and
-[`Doc/AI_Prompts.md`](Doc/AI_Prompts.md).
+Every guide has a PDF next to it in [`Doc/Guides/`](Doc/Guides/).
 
-## History of this repository
+## 🤖 AI use
 
-This repository started as Lab Assignment 03 (a first Spring Boot REST API, package `com.example.studentapi`). That code was replaced
-by Kaaj on 19 November 2026; it is still in the history (commit `84a5a39` and earlier).
+This project was built with the help of an AI assistant (Claude). Every prompt is listed word for word in
+[`Doc/AI_Prompts.md`](Doc/AI_Prompts.md), and [`Doc/AI_Declaration.md`](Doc/AI_Declaration.md) says what was AI-written, how it was
+checked, and the sources it used.
+
+## 👤 Author
+
+**Ahsan Habib** · Student ID 22201027 · BRAC University
+<br/>GitHub [@ahsanauddry027](https://github.com/ahsanauddry027) · Portfolio <https://ahsanauddry027.github.io/AhsanHabib_portfolio_2026/>
+
+<details>
+<summary><b>📜 History of this repository</b></summary>
+<br/>
+
+This repository's history starts with Lab Assignment 03 (a first Spring Boot REST API, package `com.example.studentapi`). That code was
+replaced by Kaaj on 19 November 2026; it is still in the history (commit `84a5a39` and earlier).
+</details>
+
+<div align="center">
+<sub>কাজ · Made in Bangladesh, for the people who keep it running.</sub>
+</div>

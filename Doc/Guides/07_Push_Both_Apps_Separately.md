@@ -6,7 +6,7 @@ You now have **three repositories**, each with its own job:
 
 | Repository | What goes in | Pushed | Part |
 |---|---|---|---|
-| **`SpringBoot_PostgreSQL_Api`** (already exists) | **Everything**: backend, web app, Android app, all documents. Your full copy and backup | Once now, then whenever you like | 0 |
+| **`Kaaj-The-Job-Web-and-Mobile-App`** | **Everything**: backend, web app, Android app, all documents. Your full copy and backup | Done on 19 Nov 2026; then whenever you like | 0 |
 | **Android course repository** (new, for example `Kaaj-The-Job-Android`) | The Android app + the backend it needs + `Doc/` | **Per milestone**: `milestone-2`, then `final` | A |
 | **CSE471 group repository** (your group's) | Only your web modules: shared setup + Module 1, Module 2, Module 3 | **Per module**: one branch and pull request each | W |
 
@@ -15,7 +15,7 @@ repository are filled **from** it, in a separate folder, `C:\Users\UseR\Desktop\
 
 ```
 C:\Users\UseR\Desktop\Projects\
-├── studentapi\                ← where you work · Git remote: SpringBoot_PostgreSQL_Api
+├── studentapi\                ← where you work · Git remote: Kaaj-The-Job-Web-and-Mobile-App
 └── Kaaj-Submissions\
     ├── kaaj-android\          ← Android course repository (Part A)
     └── cse471-kaaj\           ← clone of the CSE471 group repository (Part W)
@@ -25,43 +25,26 @@ Every command is for **PowerShell** on Windows 11. Run them one block at a time 
 
 ---
 
-## Part 0 — Finish the upload to `SpringBoot_PostgreSQL_Api` (once)
+## Part 0 — The full project on GitHub (done)
 
-Everything in `studentapi` is already **committed** on a new branch, **`kaaj-the-job`**, in five commits (Assignment 03 code removed;
-backend; Android app; web app; documents). Claude could not push it because it has no access to your GitHub account, so you push it:
+On 19 November 2026 the whole `studentapi` folder was pushed to **<https://github.com/ahsanauddry027/Kaaj-The-Job-Web-and-Mobile-App>**, branch **`main`**
+(five commits on top of the six Assignment 03 commits). Your folder is set up like this:
+
+| Remote | Repository | Use |
+|---|---|---|
+| `origin` | `Kaaj-The-Job-Web-and-Mobile-App` | The full Kaaj project: push here |
+| `assignment3` | `SpringBoot_PostgreSQL_Api` | Lab Assignment 03, unchanged; don't push Kaaj here |
+
+Check it any time with `git remote -v` and `git status -sb` (it should say `## main...origin/main`).
+
+**From now on**, after you change something in `studentapi`:
 
 ```powershell
 cd C:\Users\UseR\Desktop\Projects\studentapi
-git status                      # "On branch kaaj-the-job ... nothing to commit, working tree clean"
-git log --oneline -6            # the five new commits on top of 84a5a39 (Assignment 03)
-git push -u origin kaaj-the-job
+git add -A
+git commit -m "Area: what changed"
+git push
 ```
-
-The first push may open a browser window to sign in to GitHub; sign in as `ahsanauddry027`.
-
-Then make it the repository's main content, with a pull request:
-
-1. Open <https://github.com/ahsanauddry027/SpringBoot_PostgreSQL_Api>. Click **Compare & pull request** (yellow banner).
-2. Title "Kaaj – The Job: full project", then **Create pull request** → **Merge pull request** → **Confirm merge**.
-3. The repository page now shows Kaaj and the new `README.md`.
-
-> **Shortcut without a pull request:** `git push origin kaaj-the-job:Main` puts the commits straight onto `Main` (it only adds
-> commits, so nothing is lost). Use one of the two ways, not both.
-
-Bring your own `Main` branch up to date and remove the temporary branch:
-
-```powershell
-git fetch origin
-git branch -f Main origin/Main
-git switch Main
-git branch -d kaaj-the-job
-git status                      # "On branch Main ... up to date with 'origin/Main'"
-```
-
-> **Assignment 03's code** is no longer on the repository's front page, but it is safe in the history. If that instructor still
-> needs it, send this link: <https://github.com/ahsanauddry027/SpringBoot_PostgreSQL_Api/tree/84a5a39>
-
-**From now on**, after you change something in `studentapi`: `git add -A`, `git commit -m "Area: what changed"`, `git push`.
 
 **What is not uploaded** (by `.gitignore`, on purpose): `.env` (your passwords), `data/` (uploaded files), `Claude outputs/`
 (the Assignment 03 report), `Generated Documents/` (copies of `Doc/` and `docs/`, which are uploaded), and build folders
@@ -279,7 +262,7 @@ For the group's README, add a short section (edit it to match the team's style):
 
 ## Which file goes where — one table
 
-| Path | `SpringBoot_PostgreSQL_Api` | Android repository | CSE471 group repository |
+| Path | `Kaaj-The-Job-Web-and-Mobile-App` | Android repository | CSE471 group repository |
 |---|---|---|---|
 | `src/` (backend) | All | All | Only the shared setup and Member-3's modules (push lists) |
 | `web/` | Yes | No | Yes (pushes 1–3) |
@@ -295,7 +278,8 @@ For the group's README, add a short section (edit it to match the team's style):
 
 | What you see | Fix |
 |---|---|
-| `src refspec kaaj-the-job does not match any` (Part 0) | You are in the wrong folder, or the branch was already deleted. `cd` to `studentapi` and run `git branch`. |
+| `fatal: a branch named 'main' already exists` | Windows treats `Main` and `main` as the same name. Delete or rename the old branch first (`git branch -d Main`), then rename. |
+| `error: remote origin already exists` | Rename the old one first (`git remote rename origin assignment3`), then add the new `origin`. |
 | `remote: Permission ... denied` (403) | Windows saved another GitHub account. Credential Manager → Windows Credentials → remove `git:https://github.com`, push again. |
 | `! [rejected] main -> main (fetch first)` | The new GitHub repository wasn't empty. `git pull --rebase origin main`, then push again. |
 | `fatal: not a git repository` | You ran a Git command outside `kaaj-android` or `cse471-kaaj`. Check with `pwd`. |

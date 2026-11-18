@@ -72,7 +72,7 @@ JSON. The browser handles cookies by itself; the Android app uses `KaajCookieJar
 | Kotlin course instructor | GitHub `rahman9909` |
 | Backend port | **1027** (last four digits of the student ID) |
 | Inputs folder | `C:\Users\UseR\Desktop\Projects\Kaaj The Job` (requirements, context file, proposal, build prompts, Figma screen PNGs, Milestone 1 ERD and wireframe sources) |
-| Git | `studentapi` is a Git repo; `origin` = `https://github.com/ahsanauddry027/SpringBoot_PostgreSQL_Api.git` (first used for Assignment 03, now the **full Kaaj project**). On 19 Nov 2026 everything was committed on branch `kaaj-the-job` (five commits on top of Assignment 03's `84a5a39`); you push it and merge it into `Main` (`Doc/Guides/07_Push_Both_Apps_Separately.md`, Part 0). The Android app goes to its own repository `Kaaj-The-Job-Android` from a copy, per milestone (guide 07, Part A); the web app to the CSE471 group repository, per module (guide 07, Part W) |
+| Git | `studentapi` is a Git repo on branch `main`. `origin` = `https://github.com/ahsanauddry027/Kaaj-The-Job-Web-and-Mobile-App.git`: the **full Kaaj project**, pushed on 19 Nov 2026 (five commits on top of the six Assignment 03 commits). `assignment3` = `SpringBoot_PostgreSQL_Api` (Lab Assignment 03, left unchanged). The Android app goes to its own repository `Kaaj-The-Job-Android` from a copy, per milestone (`Doc/Guides/07_Push_Both_Apps_Separately.md`, Part A); the web app to the CSE471 group repository, per module (guide 07, Part W) |
 | Secrets | `.env` (git-ignored, never committed): `DB_PASSWORD`, `KAAJ_ADMIN_EMAIL`, `KAAJ_ADMIN_PASSWORD`, optional free AI keys `GEMINI_API_KEY` (aistudio.google.com) and `GROQ_API_KEY` (console.groq.com); template in `.env.example` |
 
 **Demo accounts** (loaded only with the `dev` profile; password `Kaaj@12345` for all demo users):
@@ -331,10 +331,14 @@ Fixed five places that broke the layers: sign-up rules moved from `AuthControlle
 `useReportPost`, `useTaxonomySearch`) instead of calling the server. Added `MvcLayersTest` and `web/src/architecture.test.ts`, updated the
 group-push lists (guide 05: 161, 57 and 22 files), and wrote `Doc/Guides/06_MVC_Architecture` (.md + .pdf).
 
-**Request 12 — upload the whole folder to `SpringBoot_PostgreSQL_Api`, update the README, and a guide for pushing the two apps separately.**
+**Request 12 — upload the whole folder to GitHub, update the README, and a guide for pushing the two apps separately.**
 Rewrote the root `README.md` for the full-project repository (folders, where each app is submitted, the guides, the repository's history);
 committed everything in `studentapi` on branch `kaaj-the-job` in five commits (Claude has no access to the GitHub account, so you push it:
 guide 07, Part 0); wrote `Doc/Guides/07_Push_Both_Apps_Separately` (.md + .pdf) and the Android repository's README template.
+You then pushed it to a **new** repository, `Kaaj-The-Job-Web-and-Mobile-App` (branch `main`), keeping `SpringBoot_PostgreSQL_Api` as Assignment 03.
+
+**Request 13 — a fancier README.** New banner (`Doc/assets/kaaj-banner.svg`), badges, feature cards, a screenshot gallery
+(`Doc/screenshots/readme/`, six 1200×750 crops), a Mermaid architecture diagram, demo accounts, and collapsible API and folder sections.
 
 ### Main decisions and why
 
@@ -374,7 +378,7 @@ guide 07, Part 0); wrote `Doc/Guides/07_Push_Both_Apps_Separately` (.md + .pdf) 
 | `Doc/Guides/04_Run_Backend_Web_Android.md` + `.pdf` | Step by step: run the backend, the web app and the Android app |
 | `Doc/Guides/05_GitHub_Files_Per_Module.md` + `.pdf` | Which files go to GitHub per module (web, CSE471 group repo) and per milestone (Android), with the commands |
 | `Doc/Guides/github-files/` | The file lists for guide 05, earlier versions of shared files, and `Copy-Push.ps1` |
-| `Doc/Guides/07_Push_Both_Apps_Separately.md` + `.pdf` | The three repositories: the full project in `SpringBoot_PostgreSQL_Api`, the Android app per milestone, the web app per module; copy commands, file table, Git commands |
+| `Doc/Guides/07_Push_Both_Apps_Separately.md` + `.pdf` | The three repositories: the full project in `Kaaj-The-Job-Web-and-Mobile-App`, the Android app per milestone, the web app per module; copy commands, file table, Git commands |
 | `Doc/Guides/github-files/android/README_for_the_Android_repository.md` | The README to use in the Android course repository |
 | `Doc/Guides/06_MVC_Architecture.md` + `.pdf` | How the web app follows MVC: every file's layer, each module layer by layer, a click traced through the layers, the tests that keep it, viva answers |
 | `Doc/source-documents/` | Requirements, context file, proposal, module build prompts |
@@ -393,7 +397,7 @@ guide 07, Part 0); wrote `Doc/Guides/07_Push_Both_Apps_Separately` (.md + .pdf) 
 2. Open `android/` in Android Studio, sync, run `.\gradlew.bat test`, run the app on the emulator; fix compile errors (first real compile of the app).
 3. Click through the demo with the real backend on both apps (web and Android).
 4. Fill in and sign `Doc/AI_Declaration.md` (section 2 "Other AI tools", the checking sentence in section 3, section 5).
-5. Push the full project to `SpringBoot_PostgreSQL_Api` and merge it (`Doc/Guides/07_Push_Both_Apps_Separately.md`, Part 0); then make the
+5. ~~Push the full project~~ (done: `Kaaj-The-Job-Web-and-Mobile-App`); make the
    `Kaaj-The-Job-Android` copy and push Milestone 2 (guide 07, Part A).
 6. Record the 5–8 minute video (outline in `Doc/Submission_Checklist.md`), add the link to `README.md`, tag `milestone-2`.
 

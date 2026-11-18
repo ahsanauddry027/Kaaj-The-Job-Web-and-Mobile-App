@@ -149,3 +149,13 @@ Outputs: the MVC check and fixes (`AuthService.java`, `JobSearchService.java`, `
 
 Outputs: the rewritten `README.md`; the whole folder committed on branch `kaaj-the-job` (pushed by me); `Doc/Guides/07_Push_Both_Apps_Separately.*`;
 `Doc/Guides/github-files/android/README_for_the_Android_repository.md`; pointers in guides 02 and 05.
+
+> (Pasted the PowerShell output: `fatal: a branch named 'main' already exists`, `error: remote origin already exists`) How can i fix it?
+
+Output: an answer only (delete the old `Main` branch, rename the branch to `main`, rename the old remote to `assignment3`, add the new
+repository `Kaaj-The-Job-Web-and-Mobile-App` as `origin`, push).
+
+> Make the readme.md file look more fancy.
+
+Outputs: the new `README.md`, `Doc/assets/kaaj-banner.svg`, `Doc/screenshots/readme/`; guide 07 and `PROJECT_CONTEXT.md` updated for the
+new repository.
