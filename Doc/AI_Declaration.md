@@ -1,0 +1,127 @@
+# AI usage declaration — Kaaj – The Job (Kotlin/Android version)
+
+## 1. Student and submission
+
+| | |
+|---|---|
+| Name | Ahsan Habib |
+| Student ID | 22201027 |
+| Project | Kaaj – The Job (single-member Kotlin version; same backend as the CSE471 group web app) |
+| Submissions covered | Milestone 2 (5 December 2026) and Final (12 December 2026) |
+| Repository folder | `Doc/` |
+
+## 2. AI tools and purpose
+
+| Tool | Used for |
+|---|---|
+| **Claude** (Anthropic, claude.ai, model Claude Opus) | Planning documents, generating code, tests, documentation and diagrams; checking library versions and APIs against official sources |
+| Other AI tools | *None — add any other tool here (name and what it was used for) before submitting* |
+
+Purpose (all that apply):
+
+- [x] Generating code (backend, web app, Android app, tests, SQL migrations)
+- [x] Writing text (README files, guides, comments, this `Doc/` folder)
+- [x] Design ideas (screen layouts, colours, Bangla/English wording)
+- [x] Diagrams (Milestone 1 ERD and wireframe; the as-built schema diagram)
+- [x] Learning and understanding concepts (Spring Boot, Spring Security CSRF, Jetpack Compose)
+- [ ] Image generation
+
+## 3. What I used AI for, and how
+
+Every prompt is in [`AI_Prompts.md`](AI_Prompts.md), with links to the full conversations.
+
+1. **Planning.** Claude helped write our proposal, the functional requirements, the project context file
+   and the module build prompts (`Doc/source-documents/`). The feature rules in the code come from these
+   documents.
+2. **Backend (Spring Boot 4, Java 25).** From the context file, Claude wrote the modular backend in
+   `src/`: modules `identity`, `employer`, `job`, `seeker`, `application` and `trust`, Flyway migrations V1–V240,
+   demo data, error messages in Bangla and English, and the JUnit tests (`src/test`).
+3. **Web app (React + TypeScript, `web/`).** Claude wrote the group version of my features (Module 1: employer
+   verification, post and manage jobs; Module 2: scam screening and moderation; Module 3: the AI job-post
+   assistant) with Vitest tests.
+4. **Android app (Kotlin + Jetpack Compose, `android/`).** Claude wrote the whole app: sign-in and
+   registration, employer profile and verification with camera/photo/PDF upload, the 4-step job form, my
+   jobs, the admin verification queue, the job seeker profile, job search with distance, saved jobs,
+   one-click apply and tracking, and the employer's ranked applicants; plus JUnit tests.
+5. **Diagrams.** Milestone 1's ERD and wireframe (submitted then); `Doc/diagrams/Kaaj_Schema_As_Built.*`
+   is drawn by `draw_schema.py` from the real database after running the migrations.
+6. **Guides and project context.** Claude wrote `Doc/Guides/` (one backend for the web and Android apps,
+   GitHub steps per milestone, the business model; each with its sources) and `Doc/PROJECT_CONTEXT.md`
+   (everything built so far and what is left). The web screenshots in `Doc/screenshots/web/` were taken
+   by Claude's script against a mock of the API; the scripts it used are in `Doc/generator-scripts/`.
+7. **Scam screening, moderation and the job-post assistant.** Claude wrote the Bangla/Banglish/English rule
+   checks, the optional AI check and the job-post assistant. They call free AI services (Google Gemini, then
+   Groq) only when I put my own key in `.env`; without a key they use rules and templates. Claude also wrote
+   `Doc/Guides/05_GitHub_Files_Per_Module` and the file lists and copy script in `Doc/Guides/github-files/`.
+8. **MVC check.** Claude checked the web app and the backend against the Model–View–Controller layers, moved the
+   code that broke them into services and hooks, added two tests that keep the layers apart, and wrote
+   `Doc/Guides/06_MVC_Architecture`.
+9. **GitHub.** Claude rewrote the root `README.md`, committed the project in five commits (pushed from my own GitHub account),
+   and wrote `Doc/Guides/07_Push_Both_Apps_Separately` and the Android repository's README.
+
+**How the work was checked.** Claude ran the SQL migrations on PostgreSQL, ran the web tests and build,
+checked the Java code with the Java compiler, and checked library APIs against their official source code
+and documentation (Sources, below). The Android code could not be compiled in Claude's environment, so I
+built and ran it myself in Android Studio, and ran `.\mvnw.cmd test` and `.\gradlew.bat test`.
+*(Keep this sentence only once you have done it.)*
+
+## 4. AI-assisted files
+
+| Files | AI share |
+|---|---|
+| `src/main/java/app/kaaj/**`, `src/main/resources/**`, `src/test/**` | Written by AI from our documents; reviewed and run by me |
+| `web/**` | Written by AI; reviewed and run by me |
+| `android/**` | Written by AI; reviewed, built and run by me |
+| `postman/Kaaj_Member3.postman_collection.json` | Written by AI |
+| `README.md`, `android/README.md`, `docs/**`, `Doc/**` | Written by AI; edited by me |
+| `Doc/diagrams/*` (Milestone 1 diagrams and the as-built schema) | Generated by AI scripts |
+| `Doc/Guides/*`, `Doc/PROJECT_CONTEXT.md` | Written by AI; reviewed by me |
+| `Doc/screenshots/web/*` | Taken by an AI script (web app against a mock API) |
+| `Doc/generator-scripts/*` | Written by AI to produce the guides, the Android string files, the screenshots and the checks |
+| `Doc/source-documents/*` | Our team's planning documents, written with AI help (chat 1 in `AI_Prompts.md`) |
+
+## 5. Declaration
+
+I declare that:
+
+- this disclosure is complete and accurate;
+- I understand the code in my submission and can explain and change it if asked;
+- I take full responsibility for my submission.
+
+Signature: ______________________  Date: ____ December 2026
+
+---
+
+## Sources
+
+**Our documents (inputs to the AI)** — copies in `Doc/source-documents/`:
+
+- `CSE471_Group08_Functional_Requirements_Kaaj_The_Job.docx` — features and owners (Group 08)
+- `Kaaj_The_Job_Project_Context_1.md` — the full design: rules, data model (§15), API (§16)
+- `Kaaj_The_Job_Project_Proposal_and_Technical_Design_1.docx` — the proposal
+- `Kaaj_Module_1_Build_Prompts.md`, `Kaaj_Module_2_Build_Prompts.md`, `Kaaj_Module_3_Build_Prompts.md` — the build prompts
+- `Kaaj_Windows11_Setup_Guide.pdf` — installing the tools on Windows 11 (chat 1)
+- Milestone 1 diagrams (`Doc/diagrams/`) — ERD and Android wireframe
+
+**Official documentation and source code the AI checked:**
+
+- Spring Boot 4.1 and Spring Security 7 reference and source (CSRF for single-page apps, `csrf.spa()`):
+  https://docs.spring.io/spring-boot/ · https://docs.spring.io/spring-security/reference/ · https://github.com/spring-projects/spring-security
+- Spring Modulith: https://docs.spring.io/spring-modulith/reference/
+- Android Gradle Plugin 9.0 and 9.4 release notes, built-in Kotlin:
+  https://developer.android.com/build/releases/agp-9-0-0-release-notes ·
+  https://developer.android.com/build/releases/agp-9-4-0-release-notes ·
+  https://developer.android.com/build/migrate-to-built-in-kotlin
+- Jetpack Compose BOM mapping: https://developer.android.com/develop/ui/compose/bom/bom-mapping
+- Navigation Compose releases: https://developer.android.com/jetpack/androidx/releases/navigation
+- Maven Central version lists (Kotlin, Retrofit, kotlinx.serialization, osmdroid): https://repo.maven.apache.org/maven2/
+- Retrofit kotlinx.serialization converter source: https://github.com/square/retrofit
+- osmdroid (OpenStreetMap for Android) source: https://github.com/osmdroid/osmdroid
+- Gradle wrapper 9.6.0: https://github.com/gradle/gradle
+- Material icons (Apache License 2.0), used as `android/app/src/main/res/drawable/ic_*.xml`: https://github.com/google/material-design-icons
+- OpenStreetMap tiles and attribution: https://www.openstreetmap.org/copyright
+- Gemini API, OpenAI compatibility (base URL, chat completions, `response_format`): https://ai.google.dev/gemini-api/docs/openai
+- Groq, OpenAI compatibility (base URL): https://console.groq.com/docs/openai
+- Jackson 3 (`tools.jackson.databind`) source, for reading the AI's JSON: https://github.com/FasterXML/jackson-databind
+- GitHub Docs, creating a pull request: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
+- PowerShell execution policies (`-ExecutionPolicy Bypass` for one run): https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies

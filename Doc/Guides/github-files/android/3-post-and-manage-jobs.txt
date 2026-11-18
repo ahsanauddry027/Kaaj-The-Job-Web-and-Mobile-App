@@ -1,0 +1,12 @@
+# Android commit 3: The 4-step job form, My jobs, job detail, pause/resume/close/repost
+# One path per line, relative to the studentapi folder.
+
+android/app/src/main/java/app/kaaj/android/domain/Format.kt
+android/app/src/main/java/app/kaaj/android/domain/JobForm.kt
+android/app/src/main/java/app/kaaj/android/ui/jobs/JobActions.kt
+android/app/src/main/java/app/kaaj/android/ui/jobs/JobCard.kt
+android/app/src/main/java/app/kaaj/android/ui/jobs/JobDetailScreen.kt
+android/app/src/main/java/app/kaaj/android/ui/jobs/JobFormScreen.kt
+android/app/src/main/java/app/kaaj/android/ui/jobs/MyJobsScreen.kt
+android/app/src/test/java/app/kaaj/android/domain/FormatTest.kt
+android/app/src/test/java/app/kaaj/android/domain/JobFormTest.kt

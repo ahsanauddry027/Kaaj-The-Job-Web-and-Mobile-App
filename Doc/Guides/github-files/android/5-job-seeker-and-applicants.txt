@@ -1,0 +1,16 @@
+# Android commit 5: Job seeker profile, search near me, saved jobs, apply and track; ranked applicants for employers
+# One path per line, relative to the studentapi folder.
+
+android/app/src/main/java/app/kaaj/android/domain/SeekerForm.kt
+android/app/src/main/java/app/kaaj/android/ui/applicants/ApplicantsScreens.kt
+android/app/src/main/java/app/kaaj/android/ui/common/SeekerLabels.kt
+android/app/src/main/java/app/kaaj/android/ui/seeker/ApplicationsScreen.kt
+android/app/src/main/java/app/kaaj/android/ui/seeker/SavedScreen.kt
+android/app/src/main/java/app/kaaj/android/ui/seeker/SearchScreen.kt
+android/app/src/main/java/app/kaaj/android/ui/seeker/SeekerApp.kt
+android/app/src/main/java/app/kaaj/android/ui/seeker/SeekerJobCard.kt
+android/app/src/main/java/app/kaaj/android/ui/seeker/SeekerJobScreen.kt
+android/app/src/main/java/app/kaaj/android/ui/seeker/SeekerProfileScreen.kt
+android/app/src/main/res/values-bn/strings_seeker.xml
+android/app/src/main/res/values/strings_seeker.xml
+android/app/src/test/java/app/kaaj/android/domain/SeekerFormTest.kt

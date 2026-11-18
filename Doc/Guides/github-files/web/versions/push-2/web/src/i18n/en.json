@@ -1,0 +1,484 @@
+{
+  "app": {
+    "name": "Kaaj",
+    "subtitle": "The Job",
+    "tagline": "Verified work nearby. Wages always shown. Job seekers never pay."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "business": "My business",
+    "postJob": "Post a job",
+    "myJobs": "My jobs",
+    "verification": "Employer verification",
+    "help": "Help centre",
+    "logout": "Sign out",
+    "signIn": "Sign in",
+    "register": "Create account",
+    "menu": "Menu",
+    "moderation": "Moderation"
+  },
+  "lang": {
+    "switch": "Language",
+    "bn": "বাংলা",
+    "en": "English"
+  },
+  "common": {
+    "save": "Save",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "next": "Next step",
+    "back": "Back",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading…",
+    "retry": "Try again",
+    "optional": "optional",
+    "loadMore": "Load more",
+    "viewDetails": "View details",
+    "search": "Search",
+    "notSet": "Not set",
+    "confirm": "Are you sure?",
+    "somethingWrong": "Something went wrong. Please try again.",
+    "networkError": "Can't reach the server. Is the backend running?",
+    "notFound": "Page not found",
+    "notAllowed": "You don't have access to this page.",
+    "goHome": "Go to the home page"
+  },
+  "role": {
+    "SEEKER": "Job seeker",
+    "EMPLOYER": "Employer",
+    "ADMIN": "Admin"
+  },
+  "auth": {
+    "signInTitle": "Sign in to Kaaj",
+    "registerTitle": "Create your Kaaj account",
+    "email": "Email",
+    "password": "Password",
+    "iWantTo": "I want to",
+    "findJob": "Find a job",
+    "hire": "Hire workers",
+    "signIn": "Sign in",
+    "register": "Create account",
+    "noAccount": "No account yet?",
+    "haveAccount": "Already have an account?",
+    "demoTitle": "Demo accounts (dev profile)",
+    "demoHint": "Password for every demo account: Kaaj@12345. The admin is the one in your .env file.",
+    "standIn": "Google sign-in and email codes are added by teammates (shared setup). This simple sign-in stands in until then.",
+    "seekerHome": "Welcome! Job seeker pages (profile, search, applying) are built by Member-1 and Member-2."
+  },
+  "kind": {
+    "HOUSEHOLD": "Household",
+    "SME": "Shop or small business",
+    "COMPANY": "Company",
+    "AGENCY": "Agency",
+    "NGO": "NGO"
+  },
+  "docType": {
+    "TRADE_LICENCE": "Trade licence",
+    "NATIONAL_ID": "National ID (NID)"
+  },
+  "verification": {
+    "title": "Verification status",
+    "status": {
+      "UNVERIFIED": "Not verified",
+      "PENDING": "Under review",
+      "VERIFIED": "Verified",
+      "REJECTED": "Rejected"
+    },
+    "banner": {
+      "UNVERIFIED": "Upload a trade licence or national ID to get verified. Until then your job posts stay as drafts.",
+      "PENDING": "An admin is checking your documents. Your waiting posts will go live as soon as you are approved.",
+      "VERIFIED": "Your business is verified. You can publish jobs, and every post shows the Verified badge.",
+      "REJECTED": "Your verification was not approved. Fix the problem below and upload the document again."
+    },
+    "details": "Verification details",
+    "submittedAt": "Applied on",
+    "verifiedAt": "Approved on",
+    "note": "Comment",
+    "reason": "Reason",
+    "document": "Document",
+    "noDocument": "No document uploaded yet",
+    "resubmit": "Send for review again",
+    "changeWarning": "Changing the business name or the document after approval sends your profile for review again.",
+    "badge": "Verified",
+    "badgeExplain": "An admin has checked this employer's trade licence or national ID.",
+    "missing": "Still missing"
+  },
+  "profile": {
+    "title": "Your business information",
+    "subtitle": "Give correct information about your business so that you can post jobs.",
+    "name": "Business name",
+    "namePlaceholder": "e.g. Karim Transport",
+    "kind": "Business type",
+    "address": "Address",
+    "addressPlaceholder": "e.g. Station Road, Tongi, Gazipur",
+    "pin": "Business location on the map",
+    "contactPerson": "Contact person",
+    "contactPhone": "Contact number",
+    "contactPhoneHint": "Admins use it to check your business. It is never shown on job posts.",
+    "contactEmail": "Email",
+    "save": "Save information",
+    "saved": "Saved.",
+    "createFirst": "Save your business information first, then upload the document.",
+    "uploadTitle": "Upload a trade licence or national ID",
+    "uploadHint": "PDF, JPG or PNG (up to 3 MB). Only Kaaj admins can see it.",
+    "documentType": "Document type",
+    "infoPublish": "You can post jobs once your information is verified.",
+    "missing": {
+      "name": "Business name",
+      "kind": "Business type",
+      "address": "Address",
+      "contactPerson": "Contact person",
+      "contactPhone": "Contact number",
+      "document": "Verification document"
+    }
+  },
+  "upload": {
+    "choose": "Choose file",
+    "camera": "Take a photo",
+    "uploading": "Uploading…",
+    "uploaded": "Uploaded",
+    "wrongType": "Only PDF, JPG or PNG files.",
+    "tooLarge": "The file is larger than {{mb}} MB."
+  },
+  "map": {
+    "hint": "Tap the map to place the pin.",
+    "myLocation": "Use my location",
+    "clear": "Remove pin",
+    "pinned": "Pinned at {{lat}}, {{lng}}",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "job": {
+    "status": {
+      "DRAFT": "Draft",
+      "IN_REVIEW": "In review",
+      "PUBLISHED": "Published",
+      "PAUSED": "Paused",
+      "CLOSED": "Closed",
+      "BLOCKED": "Blocked"
+    },
+    "statusReason": {
+      "EXPIRED": "Closed automatically after 30 days",
+      "CLOSED_BY_EMPLOYER": "Closed by you",
+      "AWAITING_VERIFICATION": "Waiting for your business verification",
+      "SCREENING_REVIEW": "Being checked by Kaaj before it goes live",
+      "SCREENING_BLOCKED": "Blocked by scam screening",
+      "REPORTED": "Reported by users; hidden until an admin checks it",
+      "REMOVED": "Removed by an admin"
+    },
+    "type": {
+      "FULL_TIME": "Full-time",
+      "PART_TIME": "Part-time",
+      "DAILY": "Daily"
+    },
+    "shift": {
+      "DAY": "Day",
+      "NIGHT": "Night",
+      "ROTATING": "Rotating",
+      "FLEXIBLE": "Flexible"
+    },
+    "period": {
+      "HOUR": "hour",
+      "DAY": "day",
+      "WEEK": "week",
+      "MONTH": "month",
+      "PIECE": "piece"
+    },
+    "periodLabel": {
+      "HOUR": "Per hour",
+      "DAY": "Per day",
+      "WEEK": "Per week",
+      "MONTH": "Per month",
+      "PIECE": "Per piece"
+    },
+    "action": {
+      "EDIT": "Edit",
+      "SUBMIT": "Publish",
+      "PAUSE": "Pause",
+      "RESUME": "Resume",
+      "CLOSE": "Close",
+      "REPOST": "Repost",
+      "DELETE": "Delete draft"
+    },
+    "actionDone": {
+      "SUBMIT": "Post submitted.",
+      "PAUSE": "Post paused.",
+      "RESUME": "Post is live again.",
+      "CLOSE": "Post closed.",
+      "REPOST": "A new draft was made from this post. Check it and publish.",
+      "DELETE": "Draft deleted."
+    },
+    "confirmClose": "Close this post? Job seekers will no longer see it.",
+    "confirmDelete": "Delete this draft?",
+    "postTitle": "Post a job",
+    "postSubtitle": "Post a job for your business in a few steps",
+    "editTitle": "Edit job post",
+    "steps": {
+      "details": "Details",
+      "wage": "Wage & time",
+      "location": "Location",
+      "requirements": "Requirements"
+    },
+    "titleBn": "Job title (Bangla)",
+    "titleEn": "Job title (English, optional)",
+    "titlePlaceholder": "e.g. ড্রাইভার",
+    "category": "Category",
+    "categoryPlaceholder": "Search: driver, ড্রাইভার, chalok…",
+    "openings": "Number of openings",
+    "jobType": "Job type",
+    "descriptionBn": "Description (Bangla)",
+    "descriptionEn": "Description (English, optional)",
+    "descriptionPlaceholder": "Duties, weekly holiday, overtime, food or accommodation…",
+    "wageMin": "Minimum wage (৳)",
+    "wageMax": "Maximum wage (৳)",
+    "wagePeriod": "Paid",
+    "wageHint": "The wage is required. Posts without a wage can't be published.",
+    "shiftLabel": "Shift",
+    "hours": "Working hours",
+    "startTime": "From",
+    "endTime": "To",
+    "remote": "This job can be done remotely (no fixed place)",
+    "areaName": "Area name",
+    "areaPlaceholder": "e.g. Tongi, Gazipur",
+    "skills": "Required skills",
+    "skillsPlaceholder": "Search skills…",
+    "documents": "Required documents",
+    "minExperience": "Minimum experience (years)",
+    "preview": "How job seekers will see it",
+    "saveDraft": "Save as draft",
+    "publish": "Publish",
+    "publishEdit": "Save and publish",
+    "created": "Post saved as a draft.",
+    "published": "Your post is live.",
+    "waiting": "Saved. It will be published as soon as your business is verified.",
+    "updated": "Changes saved.",
+    "tipsTitle": "Keep in mind",
+    "tips": [
+      "The wage must always be stated",
+      "Give at least one location, or mark the job as remote",
+      "The post closes automatically after 30 days"
+    ],
+    "myJobs": "My jobs",
+    "all": "All",
+    "searchPlaceholder": "Search jobs…",
+    "empty": "No job posts here yet.",
+    "publishedOn": "Published: {{date}}",
+    "expiresOn": "Expires: {{date}} ({{days}} days left)",
+    "closedOn": "Closed: {{date}}",
+    "createdOn": "Created: {{date}}",
+    "experience": "Experience: {{years}}+ years",
+    "noExperience": "No experience needed",
+    "people": "{{n}} people",
+    "applicants": "Applicants",
+    "applicantsLater": "Applicants appear here once applying is built (Module 2).",
+    "detailTitle": "Job details and management",
+    "backToJobs": "Back to my jobs",
+    "manage": "Actions",
+    "autoClose": "This post closes automatically 30 days after it was first published.",
+    "notVerifiedTitle": "Verification required",
+    "notVerified": "Your business isn't verified yet. You can prepare posts now; they go live once an admin approves your business.",
+    "goVerify": "Verify my business",
+    "needProfile": "Create your business profile before posting a job.",
+    "remoteLabel": "Remote",
+    "repostedFrom": "Reposted from an earlier post",
+    "salary": "Salary",
+    "workingHours": "Working hours",
+    "expiry": "Expires",
+    "daysLeft": "{{days}} days left"
+  },
+  "documentCode": {
+    "DRIVING_MOTORCYCLE": "Motorcycle licence",
+    "DRIVING_LIGHT": "Light vehicle licence",
+    "DRIVING_PRO_LIGHT": "Professional licence (light)",
+    "DRIVING_PRO_MEDIUM": "Professional licence (medium)",
+    "DRIVING_PRO_HEAVY": "Professional licence (heavy)"
+  },
+  "dashboard": {
+    "title": "Employer dashboard",
+    "welcome": "Welcome!",
+    "subtitle": "See your business information and your job posts here.",
+    "viewProfile": "View profile",
+    "recent": "Recent posts",
+    "seeAll": "See all",
+    "stats": {
+      "PUBLISHED": "Live posts",
+      "DRAFT": "Drafts",
+      "PAUSED": "Paused",
+      "CLOSED": "Closed"
+    },
+    "noProfileTitle": "Start with your business",
+    "noProfile": "Add your business information and a trade licence or NID. After an admin approves it, your posts go live with the Verified badge."
+  },
+  "admin": {
+    "title": "Employer verification",
+    "subtitle": "Check each business's document and details, then approve or reject.",
+    "tabs": {
+      "PENDING": "Waiting",
+      "VERIFIED": "Approved",
+      "REJECTED": "Rejected"
+    },
+    "empty": "Nothing here.",
+    "select": "Choose an employer from the list.",
+    "owner": "Account",
+    "openDocument": "Open in a new tab",
+    "noDocument": "No document",
+    "approve": "Approve",
+    "reject": "Reject",
+    "note": "Note for the employer (optional)",
+    "reasonLabel": "Reason (the employer will see it)",
+    "reasonRequired": "Give a reason for the rejection.",
+    "quickReasons": [
+      "The document is not readable",
+      "The business name doesn't match the document",
+      "The trade licence has expired",
+      "The address is incomplete"
+    ],
+    "approved": "Approved. The employer's waiting posts are now live.",
+    "rejected": "Rejected. The employer will see the reason.",
+    "submitted": "Submitted"
+  },
+  "home": {
+    "headline": "Tell Kaaj what you can do, and get matched to verified work nearby.",
+    "employers": "For employers: post a job in minutes, get verified once, and show the Verified badge on every post.",
+    "start": "Get started",
+    "member3": "Member-3 · Employer profile and verification · Post and manage jobs"
+  },
+  "publicJob": {
+    "employer": "Employer",
+    "notFound": "This job post isn't available."
+  },
+  "v": {
+    "required": "This field is required.",
+    "titleRequired": "Enter a job title.",
+    "titleShort": "The title is too short.",
+    "descriptionRequired": "Describe the job.",
+    "categoryRequired": "Choose a category.",
+    "number": "Enter a whole number.",
+    "openingsRange": "Between 1 and 1000.",
+    "wageRequired": "The wage is required.",
+    "wagePositive": "Enter a wage above 0.",
+    "wageRange": "Must be at least the minimum wage.",
+    "periodRequired": "Choose the pay period.",
+    "locationRequired": "Pin the location on the map, or mark the job as remote.",
+    "hoursRequired": "Enter both start and end times.",
+    "experienceRange": "Between 0 and 50.",
+    "nameLength": "2 to 120 characters.",
+    "phone": "Enter a Bangladeshi mobile number, e.g. 01712345678.",
+    "email": "Enter a valid email address.",
+    "passwordLength": "At least 8 characters."
+  },
+  "finding": {
+    "kind": {
+      "BLOCK": "Blocked",
+      "REVIEW": "Needs a check",
+      "QUESTION": "Question",
+      "NUDGE": "Suggestion",
+      "REMOVED": "Removed"
+    },
+    "code": {
+      "money-request": "asks job seekers for money (a fee or a deposit). Kaaj never allows this.",
+      "contact-details": "phone numbers, e-mail or \"WhatsApp only\" in the text. Contact goes through Kaaj.",
+      "unfair-requirement": "a requirement about gender, age, religion, marital status or looks. Remove it, or explain why the job needs it.",
+      "easy-money": "promises easy money or work from home.",
+      "overseas-no-licence": "a job abroad without a recruiting licence number.",
+      "wage-missing": "no wage yet. Kaaj always shows the wage.",
+      "long-day": "more than 8 working hours a day. Say how overtime is paid.",
+      "ai-high-risk": "the AI check rated this post high risk."
+    },
+    "short": {
+      "money-request": "Asks for money",
+      "contact-details": "Contact details",
+      "unfair-requirement": "Unfair requirement",
+      "easy-money": "Easy money",
+      "overseas-no-licence": "Abroad, no licence",
+      "wage-missing": "No wage",
+      "long-day": "Long day",
+      "ai-high-risk": "AI: high risk"
+    }
+  },
+  "screening": {
+    "title": {
+      "SCREENING_REVIEW": "Kaaj is checking this post",
+      "SCREENING_BLOCKED": "This post was blocked",
+      "REPORTED": "This post was reported",
+      "REMOVED": "An admin removed this post"
+    },
+    "text": {
+      "SCREENING_REVIEW": "Something in the post needs a person to look at it. It goes live as soon as an admin approves it.",
+      "SCREENING_BLOCKED": "Kaaj does not publish posts that ask job seekers for money. An admin will look at it too.",
+      "REPORTED": "Job seekers reported this post, so it is hidden from search until an admin checks it.",
+      "REMOVED": "This post is no longer shown to job seekers."
+    },
+    "adminNote": "Admin's note"
+  },
+  "report": {
+    "button": "Report this post",
+    "signInToReport": "Sign in to report this post",
+    "title": "Report this post",
+    "reason": "What is wrong?",
+    "reasons": {
+      "ASKED_FOR_MONEY": "They asked me for money",
+      "FAKE_JOB": "The job is fake or not as described",
+      "HARASSMENT": "Harassment or abuse",
+      "OTHER": "Something else"
+    },
+    "details": "Details",
+    "detailsPlaceholder": "What happened? Please do not write phone numbers.",
+    "send": "Send report",
+    "thanks": "Thank you. An admin will look at this post.",
+    "privacy": "The employer will not see who reported the post.",
+    "neverPay": "Kaaj never asks job seekers for money. If anyone asks you for a fee for this job, report the post."
+  },
+  "moderation": {
+    "title": "Moderation queue",
+    "subtitle": "Posts flagged by scam screening and posts reported by users. Most reported and oldest first.",
+    "tabs": {
+      "OPEN": "Open",
+      "REMOVED": "Removed",
+      "DISMISSED": "Dismissed"
+    },
+    "empty": "Nothing here.",
+    "select": "Choose a case from the list.",
+    "source": {
+      "SCREENING": "Flagged by screening",
+      "REPORT": "Reported by users"
+    },
+    "screening": {
+      "REVIEW": "Needs a check",
+      "BLOCK": "Blocked"
+    },
+    "reports": "{{n}} reports",
+    "post": "The post (red flags highlighted)",
+    "noWage": "No wage",
+    "findings": "Rule findings",
+    "ai": "AI check: {{risk}} risk",
+    "risk": {
+      "LOW": "low",
+      "MEDIUM": "medium",
+      "HIGH": "high"
+    },
+    "reportList": "Reports",
+    "suspended": "Account suspended",
+    "decide": "Your decision",
+    "note": "Note (the employer sees it; also kept in the audit log)",
+    "notePlaceholder": "For example: Asking job seekers for a processing fee is not allowed.",
+    "noteRequired": "Write a short note to remove the post or suspend the employer.",
+    "noteTooLong": "Keep the note under 500 characters.",
+    "confirmSuspend": "Suspending signs the employer out at once and stops them signing in. Press again to confirm.",
+    "removePost": "Remove the post",
+    "suspend": "Suspend the employer",
+    "suspendConfirm": "Yes, suspend the employer",
+    "dismiss": "Dismiss (the post is fine)",
+    "auditHint": "Every decision is written to the audit log. Removing a post warns the people who applied.",
+    "done": {
+      "REMOVE_POST": "The post was removed.",
+      "SUSPEND_EMPLOYER": "The post was removed and the employer suspended.",
+      "DISMISS": "The case was dismissed."
+    },
+    "outcome": {
+      "REMOVE_POST": "Post removed",
+      "SUSPEND_EMPLOYER": "Post removed and employer suspended",
+      "DISMISS": "Dismissed"
+    }
+  }
+}

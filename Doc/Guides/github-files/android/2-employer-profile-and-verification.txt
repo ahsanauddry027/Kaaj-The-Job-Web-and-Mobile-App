@@ -1,0 +1,10 @@
+# Android commit 2: Business profile with a map pin, licence/NID upload, verification status
+# One path per line, relative to the studentapi folder.
+
+android/app/src/main/java/app/kaaj/android/data/DocumentFiles.kt
+android/app/src/main/java/app/kaaj/android/domain/ProfileForm.kt
+android/app/src/main/java/app/kaaj/android/ui/common/DocumentPicker.kt
+android/app/src/main/java/app/kaaj/android/ui/common/MapPicker.kt
+android/app/src/main/java/app/kaaj/android/ui/employer/DashboardScreen.kt
+android/app/src/main/java/app/kaaj/android/ui/employer/EmployerApp.kt
+android/app/src/main/java/app/kaaj/android/ui/employer/ProfileScreen.kt

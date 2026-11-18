@@ -1,0 +1,28 @@
+# Push 3: Module 3 (AI job-post assistant)
+# One path per line, relative to the studentapi folder. Lines starting with # are ignored.
+
+# ---- new files (10)
+src/main/java/app/kaaj/job/internal/DraftTemplate.java
+src/main/java/app/kaaj/job/internal/JobDraftController.java
+src/main/java/app/kaaj/job/internal/JobDrafts.java
+src/main/java/app/kaaj/job/internal/OccupationFinder.java
+src/main/java/app/kaaj/job/internal/SentenceFacts.java
+src/main/java/app/kaaj/shared/TermNames.java
+src/test/java/app/kaaj/JobDraftFlowTests.java
+src/test/java/app/kaaj/job/internal/JobDraftsTest.java
+web/src/features/employer-jobs/AssistantPanel.tsx
+web/src/features/employer-jobs/assistant.test.tsx
+
+# ---- files Module 3 changes (12)
+src/main/java/app/kaaj/job/internal/JobProperties.java
+src/main/java/app/kaaj/shared/Taxonomy.java
+src/main/java/app/kaaj/shared/internal/JdbcTaxonomy.java
+src/main/resources/application.properties
+src/main/resources/messages.properties
+src/main/resources/messages_bn.properties
+web/src/features/employer-jobs/JobFormPage.tsx
+web/src/features/employer-jobs/api.ts
+web/src/features/employer-jobs/schema.ts
+web/src/i18n/bn.json
+web/src/i18n/en.json
+web/src/lib/types.ts

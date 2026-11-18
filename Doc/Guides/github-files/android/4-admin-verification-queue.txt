@@ -1,0 +1,6 @@
+# Android commit 4: The admin queue: open a document, approve or reject with a reason
+# One path per line, relative to the studentapi folder.
+
+android/app/src/main/java/app/kaaj/android/ui/admin/AdminApp.kt
+android/app/src/main/java/app/kaaj/android/ui/admin/AdminEmployerScreen.kt
+android/app/src/main/java/app/kaaj/android/ui/admin/AdminQueueScreen.kt

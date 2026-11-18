@@ -1,0 +1,62 @@
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { api } from '../../lib/api'
+import type { CursorPage, Job, JobAction, JobCounts, JobInput, JobStatus } from '../../lib/types'
+
+export function useMyJobs(status: JobStatus | null, q: string, enabled = true) {
+  return useInfiniteQuery({
+    enabled,
+    queryKey: ['jobs', 'list', status, q],
+    initialPageParam: null as string | null,
+    queryFn: ({ pageParam }) => {
+      const params = new URLSearchParams({ size: '10' })
+      if (status) params.set('status', status)
+      if (q) params.set('q', q)
+      if (pageParam) params.set('cursor', pageParam)
+      return api.get<CursorPage<Job>>(`/employer/jobs?${params}`)
+    },
+    getNextPageParam: (last) => last.nextCursor,
+  })
+}
+
+export function useJobCounts(enabled = true) {
+  return useQuery({ queryKey: ['jobs', 'counts'], queryFn: () => api.get<JobCounts>('/employer/jobs/summary'), enabled })
+}
+
+export function useJob(id: string | undefined) {
+  return useQuery({ queryKey: ['jobs', 'one', id], queryFn: () => api.get<Job>(`/employer/jobs/${id}`), enabled: !!id })
+}
+
+function useInvalidateJobs() {
+  const client = useQueryClient()
+  return () => client.invalidateQueries({ queryKey: ['jobs'] })
+}
+
+export function useCreateJob() {
+  const invalidate = useInvalidateJobs()
+  return useMutation({
+    mutationFn: ({ input, submit, key }: { input: JobInput; submit: boolean; key: string }) =>
+      api.post<Job>(`/employer/jobs?submit=${submit}`, input, { 'Idempotency-Key': key }),
+    onSuccess: invalidate,
+  })
+}
+
+export function useUpdateJob(id: string) {
+  const invalidate = useInvalidateJobs()
+  return useMutation({
+    mutationFn: ({ input, submit }: { input: JobInput; submit: boolean }) => api.put<Job>(`/employer/jobs/${id}?submit=${submit}`, input),
+    onSuccess: invalidate,
+  })
+}
+
+export function useJobAction() {
+  const invalidate = useInvalidateJobs()
+  return useMutation({
+    mutationFn: ({ id, action }: { id: string; action: JobAction }) => api.patch<Job>(`/employer/jobs/${id}`, { action }),
+    onSuccess: invalidate,
+  })
+}
+
+export function useDeleteDraft() {
+  const invalidate = useInvalidateJobs()
+  return useMutation({ mutationFn: (id: string) => api.delete<void>(`/employer/jobs/${id}`), onSuccess: invalidate })
+}

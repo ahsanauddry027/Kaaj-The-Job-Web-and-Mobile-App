@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" width="1100" height="640" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1100" height="640" fill="#ffffff"/>
+
+  <!-- Regions -->
+  <rect x="16" y="16" width="440" height="316" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+  <text x="36" y="44" font-size="16" font-weight="700" fill="#0F172A">In the browser · React web app (web/)</text>
+  <rect x="616" y="16" width="468" height="608" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+  <text x="636" y="44" font-size="16" font-weight="700" fill="#0F172A">On the server · Spring Boot (src/)</text>
+
+  <!-- View -->
+  <rect x="36" y="64" width="400" height="104" rx="12" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="52" y="92" font-size="15" font-weight="700" fill="#1D4ED8">VIEW · pages and components (*.tsx)</text>
+  <text x="52" y="116" font-size="13" fill="#1E293B">JobFormPage, MyJobsPage, EmployerProfilePage,</text>
+  <text x="52" y="136" font-size="13" fill="#1E293B">AdminVerificationPage, ModerationPage,</text>
+  <text x="52" y="156" font-size="13" fill="#1E293B">AssistantPanel, PublicJobPage, ReportButton</text>
+
+  <!-- Controller (browser) -->
+  <rect x="36" y="208" width="400" height="104" rx="12" fill="#FFFBEB" stroke="#B45309" stroke-width="2"/>
+  <text x="52" y="236" font-size="15" font-weight="700" fill="#B45309">CONTROLLER · features/*/api.ts hooks</text>
+  <text x="52" y="260" font-size="13" fill="#1E293B">useCreateJob, useCases, useDraftJob,</text>
+  <text x="52" y="280" font-size="13" fill="#1E293B">useReportPost · lib/api.ts (cookie, CSRF, errors)</text>
+  <text x="52" y="300" font-size="13" fill="#1E293B">router.tsx (web address → page)</text>
+
+  <!-- Front controller note (server) -->
+  <rect x="636" y="64" width="428" height="104" rx="12" fill="#FFFFFF" stroke="#94A3B8" stroke-dasharray="4 4"/>
+  <text x="652" y="92" font-size="14" font-weight="700" fill="#334155">Spring Web MVC</text>
+  <text x="652" y="116" font-size="13" fill="#334155">Spring's DispatcherServlet receives every</text>
+  <text x="652" y="136" font-size="13" fill="#334155">/api/v1 request and hands it to the matching</text>
+  <text x="652" y="156" font-size="13" fill="#334155">controller method (after the security checks).</text>
+  <line x1="850" y1="168" x2="850" y2="206" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Controller (server) -->
+  <rect x="636" y="208" width="428" height="104" rx="12" fill="#FFFBEB" stroke="#B45309" stroke-width="2"/>
+  <text x="652" y="236" font-size="15" font-weight="700" fill="#B45309">CONTROLLER · @RestController classes</text>
+  <text x="652" y="260" font-size="13" fill="#1E293B">EmployerJobController, AdminEmployerController,</text>
+  <text x="652" y="280" font-size="13" fill="#1E293B">TrustControllers, JobDraftController, ...</text>
+  <text x="652" y="300" font-size="13" fill="#1E293B">Read the request, call a service, return a view</text>
+
+  <!-- Model: services -->
+  <rect x="636" y="352" width="428" height="104" rx="12" fill="#ECFDF5" stroke="#047857" stroke-width="2"/>
+  <text x="652" y="380" font-size="15" font-weight="700" fill="#047857">MODEL · services (the business rules)</text>
+  <text x="652" y="404" font-size="13" fill="#1E293B">JobService, EmployerVerificationService,</text>
+  <text x="652" y="424" font-size="13" fill="#1E293B">JobRuleChecks, Screening, TrustService, JobDrafts</text>
+  <text x="652" y="444" font-size="13" fill="#1E293B">View models: JobViews, TrustViews (sent as JSON)</text>
+
+  <!-- Model: entities and data access -->
+  <rect x="636" y="496" width="428" height="76" rx="12" fill="#ECFDF5" stroke="#047857" stroke-width="2"/>
+  <text x="652" y="524" font-size="15" font-weight="700" fill="#047857">MODEL · entities and data access</text>
+  <text x="652" y="548" font-size="13" fill="#1E293B">Employer, Job, AppUser · JobRepository, CaseStore</text>
+
+  <!-- Database -->
+  <rect x="360" y="584" width="232" height="40" rx="20" fill="#F1F5F9" stroke="#475569" stroke-width="1.5"/>
+  <text x="476" y="609" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">PostgreSQL · Flyway V1–V240</text>
+  <path d="M 636 548 C 610 548, 600 604, 594 604" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Arrows: request -->
+  <line x1="236" y1="168" x2="236" y2="206" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="244" y="192" font-size="12" fill="#334155">1 · user clicks</text>
+  <line x1="436" y1="240" x2="634" y2="240" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="535" y="230" font-size="12" fill="#334155" text-anchor="middle">2 · HTTP request</text>
+  <line x1="850" y1="312" x2="850" y2="350" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="858" y="336" font-size="12" fill="#334155">3 · call a service</text>
+  <line x1="850" y1="456" x2="850" y2="494" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="858" y="480" font-size="12" fill="#334155">4 · load and save</text>
+
+  <!-- Arrows: response -->
+  <line x1="634" y1="284" x2="438" y2="284" stroke="#64748B" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="535" y="302" font-size="12" fill="#475569" text-anchor="middle">5 · JSON (the view)</text>
+  <line x1="356" y1="206" x2="356" y2="170" stroke="#64748B" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="364" y="192" font-size="12" fill="#475569">6 · page updates</text>
+
+  <!-- Rules -->
+  <text x="36" y="372" font-size="14" font-weight="700" fill="#0F172A">Rules, checked by tests</text>
+  <text x="36" y="398" font-size="13" fill="#1E293B">• Views never call the server; only the api.ts hooks do</text>
+  <text x="48" y="418" font-size="12" fill="#475569">web/src/architecture.test.ts</text>
+  <text x="36" y="446" font-size="13" fill="#1E293B">• Controllers never touch repositories or SQL;</text>
+  <text x="48" y="466" font-size="13" fill="#1E293B">they call services</text>
+  <text x="48" y="486" font-size="12" fill="#475569">src/test/java/app/kaaj/MvcLayersTest.java</text>
+  <text x="36" y="514" font-size="13" fill="#1E293B">• Modules use each other only through public types</text>
+  <text x="48" y="534" font-size="12" fill="#475569">ModularityTests</text>
+</svg>

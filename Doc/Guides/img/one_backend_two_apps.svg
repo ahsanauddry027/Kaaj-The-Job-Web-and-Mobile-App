@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="470" fill="#ffffff"/>
+
+  <!-- Web client -->
+  <rect x="20" y="40" width="250" height="160" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="145" y="68" text-anchor="middle" font-weight="700" font-size="15" fill="#1e3a8a">Web app</text>
+  <text x="145" y="88" text-anchor="middle" fill="#1e3a8a">React + TypeScript (web/)</text>
+  <text x="34" y="116" fill="#0f172a">• Browser keeps the cookies</text>
+  <text x="34" y="136" fill="#0f172a">• Dev: Vite :5173 forwards /api</text>
+  <text x="34" y="156" fill="#0f172a">• One jar: served from :1027</text>
+  <text x="34" y="176" fill="#0f172a">• Mostly employers and admins</text>
+
+  <!-- Android client -->
+  <rect x="20" y="260" width="250" height="180" rx="12" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="145" y="288" text-anchor="middle" font-weight="700" font-size="15" fill="#065f46">Android app</text>
+  <text x="145" y="308" text-anchor="middle" fill="#065f46">Kotlin + Jetpack Compose (android/)</text>
+  <text x="34" y="336" fill="#0f172a">• Retrofit + OkHttp</text>
+  <text x="34" y="356" fill="#0f172a">• KaajCookieJar (saved cookies)</text>
+  <text x="34" y="376" fill="#0f172a">• CsrfInterceptor (X-XSRF-TOKEN)</text>
+  <text x="34" y="396" fill="#0f172a">• Emulator → 10.0.2.2:1027</text>
+  <text x="34" y="416" fill="#0f172a">• Mostly job seekers</text>
+
+  <!-- Backend -->
+  <rect x="360" y="20" width="330" height="430" rx="14" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+  <text x="525" y="50" text-anchor="middle" font-weight="700" font-size="16" fill="#0f172a">Spring Boot 4.1 · port 1027</text>
+  <text x="525" y="70" text-anchor="middle" fill="#475569">one backend, one set of rules</text>
+
+  <rect x="380" y="86" width="290" height="62" rx="8" fill="#fef3c7" stroke="#b45309"/>
+  <text x="525" y="108" text-anchor="middle" font-weight="600" fill="#78350f">Security filter chain</text>
+  <text x="525" y="126" text-anchor="middle" fill="#78350f">session cookie · CSRF · role rules</text>
+  <text x="525" y="142" text-anchor="middle" fill="#78350f">401 / 403 as JSON</text>
+
+  <rect x="380" y="160" width="290" height="62" rx="8" fill="#e0e7ff" stroke="#4338ca"/>
+  <text x="525" y="182" text-anchor="middle" font-weight="600" fill="#312e81">REST API  /api/v1/**</text>
+  <text x="525" y="200" text-anchor="middle" fill="#312e81">JSON · ProblemDetail errors</text>
+  <text x="525" y="216" text-anchor="middle" fill="#312e81">Accept-Language: bn | en</text>
+
+  <rect x="380" y="234" width="290" height="80" rx="8" fill="#ffffff" stroke="#64748b"/>
+  <text x="525" y="256" text-anchor="middle" font-weight="600" fill="#0f172a">Modules (Spring Modulith)</text>
+  <text x="525" y="276" text-anchor="middle" fill="#0f172a">identity · employer · job</text>
+  <text x="525" y="294" text-anchor="middle" fill="#0f172a">seeker · application · shared</text>
+
+  <rect x="380" y="326" width="290" height="50" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-dasharray="5 4"/>
+  <text x="525" y="347" text-anchor="middle" font-weight="600" fill="#334155">SpaForwardController</text>
+  <text x="525" y="365" text-anchor="middle" fill="#334155">web only: page routes → index.html</text>
+
+  <rect x="380" y="388" width="290" height="48" rx="8" fill="#f1f5f9" stroke="#94a3b8"/>
+  <text x="525" y="408" text-anchor="middle" font-weight="600" fill="#334155">/api/v1/files/{key}</text>
+  <text x="525" y="426" text-anchor="middle" fill="#334155">web: iframe/img · app: bytes → PdfRenderer</text>
+
+  <!-- Data -->
+  <rect x="760" y="110" width="180" height="110" rx="12" fill="#f0f9ff" stroke="#0369a1" stroke-width="2"/>
+  <text x="850" y="140" text-anchor="middle" font-weight="700" font-size="15" fill="#075985">PostgreSQL</text>
+  <text x="850" y="162" text-anchor="middle" fill="#075985">database "kaaj"</text>
+  <text x="850" y="182" text-anchor="middle" fill="#075985">Flyway V1 … V160</text>
+  <text x="850" y="202" text-anchor="middle" fill="#075985">sessions in memory*</text>
+
+  <rect x="760" y="270" width="180" height="90" rx="12" fill="#f0f9ff" stroke="#0369a1" stroke-width="2"/>
+  <text x="850" y="300" text-anchor="middle" font-weight="700" font-size="15" fill="#075985">data/uploads</text>
+  <text x="850" y="322" text-anchor="middle" fill="#075985">licences, NID, photos</text>
+  <text x="850" y="342" text-anchor="middle" fill="#075985">(git-ignored)</text>
+
+  <!-- Arrows -->
+  <line x1="272" y1="120" x2="376" y2="150" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="34" y="222" fill="#1d4ed8" font-size="12">Web → same origin (cookies sent by the browser)</text>
+  <line x1="272" y1="300" x2="376" y2="205" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="34" y="236" fill="#047857" font-size="12">Android → 10.0.2.2, LAN IP or tunnel</text>
+  <line x1="692" y1="190" x2="756" y2="170" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="692" y1="410" x2="756" y2="330" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="20" y="462" fill="#64748b" font-size="11">* Sessions live in the backend's memory: restarting it signs everyone out on both apps (see section 4.1).</text>
+</svg>
