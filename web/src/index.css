@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@import "@fontsource/noto-sans-bengali/400.css";
+@import "@fontsource/noto-sans-bengali/500.css";
+@import "@fontsource/noto-sans-bengali/600.css";
+@import "@fontsource/noto-sans-bengali/700.css";
+@import "leaflet/dist/leaflet.css";
+
+/* Kaaj design tokens, matched to the Figma screens: white cards, blue primary, soft grey page. */
+@theme {
+  --font-sans: "Noto Sans Bengali", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #1d4ed8;
+  --color-brand-700: #1e40af;
+  --color-page: #f5f7fb;
+}
+
+html, body, #root { min-height: 100%; }
+body { background: var(--color-page); color: #0f172a; }
+
+/* Large touch targets (44px) on phones, as the interface rules ask. */
+@media (pointer: coarse) {
+  button, [role="button"], input, select, textarea { min-height: 44px; }
+}
