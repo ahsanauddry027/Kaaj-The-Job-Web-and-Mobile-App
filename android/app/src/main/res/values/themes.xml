@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The window theme. Everything inside is drawn by Compose (ui/theme/Theme.kt). -->
+    <style name="Theme.Kaaj" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/page</item>
+        <item name="colorPrimary">@color/brand</item>
+    </style>
+</resources>

@@ -1,0 +1,15 @@
+# Android Studio / Gradle
+.gradle/
+build/
+/local.properties
+/.idea/
+*.iml
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# The Gradle wrapper jar must stay in git
+!gradle/wrapper/gradle-wrapper.jar
