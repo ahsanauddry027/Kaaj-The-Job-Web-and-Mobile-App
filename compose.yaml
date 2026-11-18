@@ -1,0 +1,17 @@
+# Optional: run PostgreSQL in Docker instead of a local install.
+#   docker compose up -d        (reads DB_PASSWORD from .env)
+# Then set DB_USER=kaaj in .env, because this container's user is "kaaj", not "postgres".
+# Member-3's features need only plain PostgreSQL. When teammates add PostGIS (distance search) and
+# pgvector (AI matching), switch the image to one that has both, as in the context file §17.
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: kaaj
+      POSTGRES_USER: kaaj
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports: ["5432:5432"]
+    volumes: ["dbdata:/var/lib/postgresql"]
+
+volumes:
+  dbdata: {}

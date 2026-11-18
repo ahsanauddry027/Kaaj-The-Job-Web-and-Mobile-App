@@ -36,5 +36,13 @@ build/
 .env
 data/
 
+### React web app (web/) ###
+web/node_modules/
+web/dist/
+web/coverage/
+
 ### Assignment report (kept out of the repository) ###
 Claude outputs/
+
+### Copies of the guides and documents for easy reading (the originals are in Doc/ and docs/) ###
+Generated Documents/

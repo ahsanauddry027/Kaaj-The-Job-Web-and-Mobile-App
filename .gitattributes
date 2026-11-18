@@ -1,2 +1,12 @@
-/mvnw text eol=lf
+* text=auto
+mvnw text eol=lf
+*.sh text eol=lf
 *.cmd text eol=crlf
+*.png binary
+*.jpg binary
+*.pdf binary
+gradlew text eol=lf
+*.bat text eol=crlf
+*.jar binary
+*.docx binary
+*.drawio text
