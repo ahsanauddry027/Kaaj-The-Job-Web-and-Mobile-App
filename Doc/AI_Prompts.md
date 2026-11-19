@@ -159,3 +159,18 @@ repository `Kaaj-The-Job-Web-and-Mobile-App` as `origin`, push).
 
 Outputs: the new `README.md`, `Doc/assets/kaaj-banner.svg`, `Doc/screenshots/readme/`; guide 07 and `PROJECT_CONTEXT.md` updated for the
 new repository.
+
+> Now make a final .MD file that I can share with my friend who are Working with me on kaaj the Job, Only the Web App version.
+> The mobile version is individual for me only. I want to let them know what i have done with the Web App version.
+
+Output: `Doc/Kaaj_Web_App_Member3_Update.md` (also in `Generated Documents/`).
+
+> Have you mentioned all the version of typescript, java, springboot, Maven and stuff?
+
+Output: a "Tech stack and exact versions" section in `Doc/Kaaj_Web_App_Member3_Update.md` (from `pom.xml`, the Maven wrapper,
+`web/package-lock.json` and Spring Boot 4.1.2's managed versions), and a build row in `PROJECT_CONTEXT.md`, section 5.
+
+> Have you included how to start/ run both of the along with the backend with POSTGRESQL GUI pgadmin14 from scratch?
+
+Outputs: guide 04 Part 1 rewritten as a pgAdmin 4 walkthrough from installing PostgreSQL, Step A4 (the tables in pgAdmin), more fixes in
+Part E; pgAdmin steps in `Doc/Kaaj_Web_App_Member3_Update.md`, `README.md` and the Android repository's README; PostgreSQL 14+ stated as supported.

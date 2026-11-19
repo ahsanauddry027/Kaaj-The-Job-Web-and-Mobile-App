@@ -5,6 +5,8 @@ Android app), how it was checked, every generated file, and what is still left.
 
 | File | What it is |
 |---|---|
+| [`FILE_INDEX.md`](FILE_INDEX.md) | Where every file in the project folder is: all 522 files, folder by folder, with what each folder holds |
+| [`Kaaj_Web_App_Member3_Update.md`](Kaaj_Web_App_Member3_Update.md) | For the CSE471 teammates: what Member-3 built in the web app, the shared pieces they can use, where their features plug in, team rules, how to run it, the three pull requests (web app only) |
 | [`PROJECT_CONTEXT.md`](PROJECT_CONTEXT.md) | Project context and work log for the Android app, the web app and the backend; what is left |
 | [`Submission_Checklist.md`](Submission_Checklist.md) | Every file to submit for Milestone 2 and the Final, deadlines, and video outlines |
 | [`AI_Declaration.md`](AI_Declaration.md) | AI usage declaration, with sources — **fill in and sign before submitting** |

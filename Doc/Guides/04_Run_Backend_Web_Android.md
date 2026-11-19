@@ -1,6 +1,6 @@
 # How to run Kaaj: the backend, the web app and the Android app
 
-**Kaaj – The Job** · Ahsan Habib (22201027) · Windows 11 · written 18 November 2026
+**Kaaj – The Job** · Ahsan Habib (22201027) · Windows 11 · written 18 November 2026 · updated 19 November 2026 (PostgreSQL and pgAdmin from scratch)
 
 This guide takes you from a fresh start to all three parts running together on your PC:
 
@@ -10,7 +10,8 @@ This guide takes you from a fresh start to all three parts running together on y
 | **Web app** (React + TypeScript) | `studentapi\web\` | port **5173** | <http://localhost:5173> |
 | **Android app** (Kotlin + Jetpack Compose) | `studentapi\android\` | Android emulator or your phone | the Kaaj app |
 
-The backend must be running before either app can do anything. The usual order is: PostgreSQL → backend → web app and/or Android app.
+The backend must be running before either app can do anything. The usual order is: PostgreSQL (with the `kaaj` database, made in
+pgAdmin) → backend → web app and/or Android app.
 
 > **Important: this is the first time the code will be built.** The backend and the Android app were written without being compiled
 > (the AI's workspace could not download the build tools). The web app was built and tested, but only against a stand-in API. Expect a few
@@ -20,8 +21,8 @@ All commands are for **PowerShell**. Open it from the Start menu ("Windows Power
 
 ## Contents
 
-1. [Part 0 — Check the tools (once)](#part-0--check-the-tools-once)
-2. [Part 1 — Prepare the database and settings (once)](#part-1--prepare-the-database-and-settings-once)
+1. [Part 0 — Install and check the tools (once)](#part-0--install-and-check-the-tools-once)
+2. [Part 1 — Set up PostgreSQL and the database with pgAdmin (once)](#part-1--set-up-postgresql-and-the-database-with-pgadmin-once)
 3. [Part A — Run the backend](#part-a--run-the-backend)
 4. [Part B — Run the web app](#part-b--run-the-web-app)
 5. [Part C — Run the Android app](#part-c--run-the-android-app)
@@ -31,7 +32,7 @@ All commands are for **PowerShell**. Open it from the Start menu ("Windows Power
 
 ---
 
-## Part 0 — Check the tools (once)
+## Part 0 — Install and check the tools (once)
 
 Open PowerShell and run:
 
@@ -39,72 +40,122 @@ Open PowerShell and run:
 java -version      # must say version 25
 node -v            # must be v24 or newer
 npm -v
-psql --version     # PostgreSQL 16 or newer (18 recommended)
 git --version
 ```
 
 | Tool | Needed for | If it's missing |
 |---|---|---|
 | **JDK 25** (Eclipse Temurin) | Backend | `winget install --id EclipseAdoptium.Temurin.25.JDK -e`, or download from <https://adoptium.net> |
-| **Node.js 24 or newer** | Web app | `winget install --id OpenJS.NodeJS.LTS -e`, or <https://nodejs.org> |
-| **PostgreSQL** (with pgAdmin) | Backend | Installer from <https://www.postgresql.org/download/windows/>; remember the password you give the `postgres` user |
+| **Node.js 24 LTS** | Web app | `winget install --id OpenJS.NodeJS.LTS -e`, or <https://nodejs.org> |
+| **PostgreSQL** with **pgAdmin 4** | Backend | Part 1, step 1.1 |
 | **Android Studio** (latest stable) | Android app | <https://developer.android.com/studio> |
-| Git | Pushing to GitHub | `winget install --id Git.Git -e` |
+| Git | GitHub | `winget install --id Git.Git -e` |
 | Docker Desktop | *Optional*: only for the backend's end-to-end tests | <https://www.docker.com/products/docker-desktop/> |
 
-More detail on installing each tool is in your `Kaaj_Windows11_Setup_Guide.pdf` (in the `Kaaj The Job\Documents` folder).
-
-**If `psql` is "not recognized"**, PostgreSQL is installed but not on the PATH. Either use pgAdmin for Part 1, or run it with its full path,
-for example `& "C:\Program Files\PostgreSQL\18\bin\psql.exe" --version` (use your version number in the folder name).
+You don't install Maven: the project's `mvnw.cmd` downloads Maven 3.10.0 by itself.
+More detail on installing each tool is in `Doc/source-documents/Kaaj_Windows11_Setup_Guide.pdf`.
 
 **If `java -version` shows an older version** (17 or 21), see Part E, row 2.
 
 ---
 
-## Part 1 — Prepare the database and settings (once)
+## Part 1 — Set up PostgreSQL and the database with pgAdmin (once)
 
-### Step 1.1 — Make sure PostgreSQL is running
+Everything here is done in **pgAdmin 4**, the graphical tool that comes with PostgreSQL. Typed commands (`psql`) are given as an
+alternative at the end of each step, if you prefer them.
 
-```powershell
-Get-Service postgresql*
+> **Which PostgreSQL version?** **14 or newer** works. The project uses nothing newer than PostgreSQL 14 offers, and its database tool
+> (Flyway) supports PostgreSQL 9 to 17 ([Redgate](https://documentation.red-gate.com/fd/introducing-flyway-pipelines-for-postgresql-your-new-window-into-database-deployment-health-and-history-261325691.html)).
+> It was tested on PostgreSQL 16. If you are installing it fresh, take the newest version the installer offers. In pgAdmin the server
+> appears as "PostgreSQL 14" (or 16, 17, 18): it is the same steps whatever the number.
+
+### Step 1.1 — Install PostgreSQL and pgAdmin (skip if you already have them)
+
+1. Go to <https://www.postgresql.org/download/windows/> and click **Download the installer** (by EDB).
+2. Run it and keep the defaults, with these checks:
+   - **Components:** tick **PostgreSQL Server**, **pgAdmin 4** and **Command Line Tools**. Stack Builder isn't needed.
+   - **Password:** type a password for the database superuser `postgres`. **Write it down**: Kaaj needs it in step 1.5.
+   - **Port:** keep **5432**. (If it suggests 5433, another PostgreSQL is already installed; note the number for step 1.5.)
+   - **Locale:** keep the default.
+3. Finish. Untick "Launch Stack Builder" if it asks.
+
+PostgreSQL now runs as a Windows service and starts with Windows.
+
+### Step 1.2 — Open pgAdmin and connect to your server
+
+1. Start menu → **pgAdmin 4**. The first time it asks you to set a **master password**: this protects the passwords pgAdmin saves
+   for you. It is pgAdmin's own password, not the database's; choose one and remember it.
+2. In the **Object Explorer** on the left, expand **Servers**. You should see **PostgreSQL 14** (or your version).
+3. Click it. When asked, type the `postgres` password from step 1.1, tick **Save password**, and click **OK**.
+   The server's icon changes (no red cross) and **Databases**, **Login/Group Roles** and **Tablespaces** appear under it.
+
+**No server in the list?** Add it yourself: right-click **Servers → Register → Server…**
+
+| Tab | Field | Value |
+|---|---|---|
+| General | Name | `Local PostgreSQL` |
+| Connection | Host name/address | `localhost` |
+| Connection | Port | `5432` (or the port from step 1.1) |
+| Connection | Maintenance database | `postgres` |
+| Connection | Username | `postgres` |
+| Connection | Password | your `postgres` password, and tick **Save password?** |
+
+Click **Save**.
+
+**"Could not connect to server" / "Connection refused"?** The PostgreSQL service is stopped. Start menu → type **Services** → find
+**postgresql-x64-14** (your version number) → right-click → **Start**. Or in PowerShell *as Administrator*:
+`Get-Service postgresql*` then `Start-Service postgresql-x64-14`.
+
+### Step 1.3 — Create the `kaaj` database
+
+Kaaj needs its own, empty database. (Your Assignment 03 used another one, `student_db`; leave that alone.)
+
+1. Under your server, right-click **Databases → Create → Database…**
+2. **General** tab: **Database** `kaaj` (lowercase), **Owner** `postgres`.
+3. **Definition** tab: check that **Encoding** is **UTF8** (needed for Bangla text). If it shows anything else, set **Template** to
+   `template0` and **Encoding** to `UTF8`.
+4. Click **Save**. `kaaj` now appears under **Databases**.
+
+Don't create any tables: the backend creates all of them (15 tables) the first time it starts.
+
+*With commands instead:* `psql -U postgres -c "CREATE DATABASE kaaj ENCODING 'UTF8' TEMPLATE template0;"`
+(if `psql` is "not recognized", use its full path, for example `& "C:\Program Files\PostgreSQL\14\bin\psql.exe" -U postgres -c "..."`).
+
+### Step 1.4 — Optional: check the search extension
+
+Kaaj's typo-tolerant search uses PostgreSQL's `pg_trgm` extension. The backend switches it on by itself, as the `postgres` user. To
+check it is available: right-click **kaaj → Query Tool**, type the line below and press **F5** (or the ▶ **Execute** button):
+
+```sql
+SELECT name, default_version FROM pg_available_extensions WHERE name = 'pg_trgm';
 ```
 
-The `Status` column should say `Running`. If it says `Stopped`, start it (PowerShell **as Administrator**), using the name shown:
+One row means it's there (it comes with every PostgreSQL installed by the Windows installer).
 
-```powershell
-Start-Service postgresql-x64-18
-```
+### Step 1.5 — Put the database password in `.env`
 
-### Step 1.2 — Create the `kaaj` database
-
-Your Assignment 03 used a different database (`student_db`). Kaaj needs its own, empty one called `kaaj`:
-
-```powershell
-psql -U postgres -c "CREATE DATABASE kaaj;"
-```
-
-Type your PostgreSQL password when asked. `CREATE DATABASE` means it worked; `already exists` is also fine.
-(With pgAdmin: right-click **Databases → Create → Database…**, name `kaaj`, Save.)
-
-You don't create any tables yourself: the backend's Flyway migrations create all 15 tables on its first start.
-
-### Step 1.3 — Check the settings file `.env`
+The backend reads its settings from a file named `.env` in the project folder. It is private: git-ignored, never uploaded.
 
 ```powershell
 cd C:\Users\UseR\Desktop\Projects\studentapi
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 notepad .env
 ```
 
-It must contain at least these lines (your real password after `DB_PASSWORD=`, no spaces, no comment on the same line):
+Make sure these lines are there (your real `postgres` password after `DB_PASSWORD=`, no spaces, no comment on the same line):
 
 ```properties
 DB_PASSWORD=your-postgres-password
+DB_NAME=kaaj
+DB_USER=postgres
 KAAJ_ADMIN_EMAIL=admin@kaaj.local
 KAAJ_ADMIN_PASSWORD=Admin@12345
 ```
 
-If your database user isn't `postgres`, also add `DB_USER=...`. `.env` is private: it is git-ignored and must never be uploaded.
-(If `.env` doesn't exist, run `Copy-Item .env.example .env` first.)
+Only if your PostgreSQL is **not** on port 5432 (step 1.1), add `DB_PORT=5433` (your port). Optional: `GEMINI_API_KEY=` with a free
+key from <https://aistudio.google.com> makes the job-post assistant and the scam check use AI. Save and close Notepad.
+
+`DB_PASSWORD` must be exactly the password pgAdmin accepted in step 1.2.
 
 ---
 
@@ -152,6 +203,37 @@ curl.exe http://localhost:1027/api/v1/jobs
 - Type `curl.exe`, not `curl`: in Windows PowerShell, `curl` is a different command.
 
 You can also open <http://localhost:1027/swagger-ui.html> in a browser to see and try every API endpoint.
+
+### Step A4 — See the database in pgAdmin
+
+After the first start, the backend has created the tables and filled in the demo data. In pgAdmin:
+
+1. Right-click **kaaj → Refresh**, then open **kaaj → Schemas → public → Tables**. You should see **16** tables: Kaaj's 15
+   (`app_user`, `audit_log`, `email_code`, `occupation`, `occupation_synonym`, `skill`, `skill_synonym`, `employer`, `job`,
+   `seeker_profile`, `saved_job`, `application`, `application_event`, `trust_case`, `report`) plus `flyway_schema_history`,
+   where Flyway records which migrations have run.
+2. To look inside a table: right-click it → **View/Edit Data → All Rows**.
+3. To ask questions: right-click **kaaj → Query Tool**, paste one query, select it and press **F5**:
+
+```sql
+-- every migration Flyway ran (success should be true everywhere)
+SELECT version, description, success FROM flyway_schema_history ORDER BY installed_rank;
+
+-- the demo accounts and the admin
+SELECT email, role, status FROM app_user ORDER BY email;
+
+-- job posts, and why some are held or blocked
+SELECT title_en, status, status_reason FROM job ORDER BY created_at DESC;
+
+-- employers: verified or not
+SELECT name, verification_status FROM employer;
+
+-- the moderation queue
+SELECT status, screening, report_count FROM trust_case;
+```
+
+Look, but don't change data or tables by hand while the backend is running: Flyway owns the structure, and the apps expect the data
+to follow their rules. To start again with a clean database, see Part E, row 16.
 
 ### The demo accounts (password `Kaaj@12345` for all of them)
 
@@ -394,9 +476,9 @@ The useful part is usually the **first** error: a file name, a line number and a
 |---|---|---|
 | 1 | `'java' is not recognized` or `JAVA_HOME is not defined correctly` | Install JDK 25 (Part 0), close and reopen PowerShell |
 | 2 | `release version 25 not supported` or `invalid target release: 25` | Maven is using an older JDK. Set JAVA_HOME to JDK 25 for your user, then reopen PowerShell: `[Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\Eclipse Adoptium\jdk-25…", "User")` (use the real folder name) |
-| 3 | `Could not resolve placeholder 'DB_PASSWORD'` | Run the command from the `studentapi` folder; check `.env` has `DB_PASSWORD=...` (Part 1.3) |
-| 4 | `password authentication failed for user "postgres"` | The password in `.env` is wrong |
-| 5 | `database "kaaj" does not exist` / `Connection refused` on port 5432 | Do Part 1.2 / start PostgreSQL (Part 1.1) |
+| 3 | `Could not resolve placeholder 'DB_PASSWORD'` | Run the command from the `studentapi` folder; check `.env` has `DB_PASSWORD=...` (step 1.5) |
+| 4 | `password authentication failed for user "postgres"` | `DB_PASSWORD` in `.env` is not the password pgAdmin accepts (step 1.2). Fix `.env` and start the backend again |
+| 5 | `database "kaaj" does not exist` / `Connection refused` on port 5432 | Create it (step 1.3) / start the PostgreSQL service (step 1.2, "Could not connect"); if your server uses another port, set `DB_PORT` in `.env` |
 | 6 | `Port 1027 was already in use` | Another backend is running. Find it with `Get-NetTCPConnection -LocalPort 1027 \| Select-Object OwningProcess`, stop it with `Stop-Process -Id <number>` |
 | 7 | Gradle sync error on `compileSdk { version = release(37) }` | Open `android\app\build.gradle.kts` and change it to `compileSdk = 37` |
 | 8 | Gradle error mentioning the `org.jetbrains.kotlin.android` plugin | Don't add that plugin: Android Gradle Plugin 9 has Kotlin built in |
@@ -407,7 +489,12 @@ The useful part is usually the **first** error: a file name, a line number and a
 | 13 | Android on a phone: `CLEARTEXT communication … not permitted` | Use the debug build (the normal ▶ Run), or an `https://` address |
 | 14 | Upload fails with 413 | The file is over 3 MB; use a smaller one (the Android app shrinks photos itself) |
 | 15 | Signed out after restarting the backend | Normal: sign-ins are kept in memory |
-| 16 | `Migration checksum mismatch` | A migration file that had already run was changed. For your local demo database only: `psql -U postgres -c "DROP DATABASE kaaj;"` then do Part 1.2 again |
+| 16 | `Migration checksum mismatch`, or you just want a clean start | A migration that had already run was changed. For your local demo database only: stop the backend (Ctrl+C); in pgAdmin open a **Query Tool on the `postgres` database** (not `kaaj`) and run `DROP DATABASE kaaj WITH (FORCE);`; then do step 1.3 again and start the backend |
+| 17 | pgAdmin asks for a **master password** you forgot | It is pgAdmin's own password. Click **Reset Master Password** (pgAdmin forgets the saved server passwords), set a new one, then type the `postgres` password again |
+| 18 | pgAdmin: `password authentication failed` for `postgres` | That is the password from the PostgreSQL installer. If it is lost, reinstalling is the simplest fix for a student PC |
+| 19 | Bangla text shows as `???` | The database was created without UTF8. Drop it (row 16) and create it again with **Template** `template0` and **Encoding** `UTF8` (step 1.3) |
+| 20 | `permission denied to create extension "pg_trgm"` | Use the `postgres` user in `.env` (`DB_USER=postgres`), or run `CREATE EXTENSION pg_trgm;` once in a Query Tool on `kaaj` as `postgres` |
+| 21 | Two PostgreSQL servers in pgAdmin (for example 14 and 18) | Each has its own port (5432, 5433). Create `kaaj` on one of them and put that server's port in `.env` as `DB_PORT` |
 
 More problems and their causes: `01_One_Backend_Two_Apps`, section 5.
 
@@ -417,12 +504,14 @@ More problems and their causes: `01_One_Backend_Two_Apps`, section 5.
 
 | Step | Window | Command / action |
 |---|---|---|
-| 1 | — | PostgreSQL runs by itself (check: `Get-Service postgresql*`) |
+| 1 | — | PostgreSQL runs by itself (check: `Get-Service postgresql*`, or pgAdmin connects without a red cross) |
 | 2 | PowerShell 1, in `studentapi` | `.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=dev"` → wait for `Started KaajApplication` |
 | 3 | PowerShell 2, in `studentapi\web` | `npm run dev` → <http://localhost:5173> |
 | 4 | Android Studio, project `studentapi\android` | Start the emulator → ▶ Run |
 | Stop | each window | Ctrl+C (backend, web); ■ Stop in Android Studio |
 | After changing backend code | PowerShell 1 | Ctrl+C, then `.\mvnw.cmd test`, then start it again |
+| Look at the data | pgAdmin | **kaaj → Schemas → public → Tables** → right-click → **View/Edit Data**, or **kaaj → Query Tool** |
+| Clean database | pgAdmin, Query Tool on `postgres` | Stop the backend, `DROP DATABASE kaaj WITH (FORCE);`, create `kaaj` again (step 1.3) |
 
 | Address | What |
 |---|---|

@@ -119,10 +119,11 @@ Everything is free and publicly available.
 
 | Part | Technology |
 |---|---|
-| Backend | Java 25, **Spring Boot 4.1.2**, Spring Modulith 2.1.2, Spring Security 7 (session + `csrf.spa()`), Spring Data JPA + JdbcClient, Flyway, PostgreSQL 16+ (18 recommended; `pg_trgm`, no PostGIS needed), springdoc 3.2.0 (Swagger UI), Apache Tika 3.3.3 (file type checks), virtual threads, Testcontainers |
+| Backend | Java 25, **Spring Boot 4.1.2**, Spring Modulith 2.1.2, Spring Security 7 (session + `csrf.spa()`), Spring Data JPA + JdbcClient, Flyway, PostgreSQL 14+ (tested on 16; 18 for a new install; managed with pgAdmin 4; `pg_trgm`, no PostGIS needed), springdoc 3.2.0 (Swagger UI), Apache Tika 3.3.3 (file type checks), virtual threads, Testcontainers |
 | Web | React 19.3, TypeScript 7.0, Vite 8.3, React Router 8.5, TanStack Query 5, react-hook-form 7 + Zod 4, i18next 27 (`bn` default, `en`), Tailwind CSS 4.3, Leaflet 1.9 + OpenStreetMap, lucide-react icons, Vitest 5 + Testing Library, oxlint |
 | Android | Android Gradle Plugin **9.4.1** with built-in Kotlin (Kotlin 2.4.21), Gradle 9.6.0, compileSdk/targetSdk 37, minSdk 26, Java 17; Jetpack Compose BOM 2026.02.01 (Material 3 1.4.0), Navigation Compose 2.10.2 (type-safe routes), Retrofit 3.0.0 + kotlinx-serialization 1.13.0, OkHttp 4.12.0, coroutines 1.10.2, osmdroid 6.1.20 (OpenStreetMap), AppCompat (per-app language) |
 | AI (optional, free) | Google Gemini (`gemini-2.5-flash`) first, Groq (`openai/gpt-oss-120b`) second, both through their OpenAI-compatible chat endpoints with Spring's `RestClient`; without keys the assistant uses templates and screening uses rules |
+| Build | Maven **3.10.0** through the Maven Wrapper 3.3.4; Node v24.11.0 for `-Pweb` (frontend-maven-plugin 2.0.2). Spring Boot 4.1.2 manages Spring Framework 7.0.10, Spring Security 7.1.2, Hibernate 7.4.13, Jackson 3.1.7, Flyway 12.4.0, PostgreSQL JDBC 42.7.14, JUnit 6.0.3, Testcontainers 2.0.5. Exact web versions (TypeScript 7.0.2, React 19.3.1, Vite 8.3.8, ...): `Doc/Kaaj_Web_App_Member3_Update.md`, section 2 |
 | Tools | Maven wrapper, Gradle wrapper, Node.js 24, Postman, Android Studio, Docker Desktop (optional, for Testcontainers) |
 
 ## 6. The backend
@@ -340,6 +341,19 @@ You then pushed it to a **new** repository, `Kaaj-The-Job-Web-and-Mobile-App` (b
 **Request 13 — a fancier README.** New banner (`Doc/assets/kaaj-banner.svg`), badges, feature cards, a screenshot gallery
 (`Doc/screenshots/readme/`, six 1200×750 crops), a Mermaid architecture diagram, demo accounts, and collapsible API and folder sections.
 
+**Request 14 — a Markdown file for the teammates about the web app only.** `Doc/Kaaj_Web_App_Member3_Update.md`: the four features
+(M1-3, M1-4, M2-4, M3-4) with pages, endpoints, modules and tables; the shared pieces they can reuse; where each of their features plugs
+in; the team rules incl. the Flyway ranges from the context file (§22); run steps and demo accounts; the three pull requests; the status.
+The Android app is not mentioned.
+
+**Request 15 — exact versions** (Java, Spring Boot, Maven, TypeScript...): added as section 2 of the team file and a build row here.
+
+**Request 16 — running everything from scratch with pgAdmin.** Guide 04, Part 1 is now a pgAdmin 4 walkthrough: install PostgreSQL
+and pgAdmin, connect, create `kaaj` (UTF8), check `pg_trgm`, fill in `.env`; Step A4 shows the tables and five checking queries in pgAdmin;
+Part E has pgAdmin problems (master password, service stopped, UTF8, two servers, clean restart with `DROP DATABASE kaaj WITH (FORCE)`).
+PostgreSQL **14 or newer** is now stated as supported (nothing newer is used; Flyway supports 9–17; tested on 16). The team file,
+the README and the Android README got short pgAdmin steps too.
+
 ### Main decisions and why
 
 | Decision | Why |
@@ -370,6 +384,7 @@ You then pushed it to a **new** repository, `Kaaj-The-Job-Web-and-Mobile-App` (b
 | `postman/Kaaj_Member3.postman_collection.json` | 53 API requests in 5 folders |
 | `Doc/README.md` | Index of the `Doc/` folder |
 | `Doc/PROJECT_CONTEXT.md` | **This file** |
+| `Doc/Kaaj_Web_App_Member3_Update.md` | The update to share with the CSE471 teammates (web app only): features, shared pieces, plug-in points, Flyway ranges, run steps, pull requests, status |
 | `Doc/Submission_Checklist.md` | Files per milestone, deadlines, video outlines, viva topics |
 | `Doc/AI_Declaration.md`, `Doc/AI_Prompts.md` | AI declaration (fill in and sign) and every prompt |
 | `Doc/Guides/01_One_Backend_Two_Apps.md` + `.pdf` | One backend for both apps |

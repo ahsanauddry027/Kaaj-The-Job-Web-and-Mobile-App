@@ -11,7 +11,7 @@ with **verified employers**. One Spring Boot backend serves a React web app and 
 
 ![Java](https://img.shields.io/badge/Java-25-ED8B00?logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.1-6DB33F?logo=springboot&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2B-4169E1?logo=postgresql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14%2B-4169E1?logo=postgresql&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
@@ -209,14 +209,18 @@ web/src/
 
 ## 🚀 Quick start
 
-> **You need:** JDK 25 · Node.js 24+ · PostgreSQL 16+ (18 recommended) · Android Studio for the app
+> **You need:** JDK 25 · Node.js 24 LTS · PostgreSQL 14+ with pgAdmin 4 · Android Studio for the app
 
 **1. Database and settings**
 
+In **pgAdmin 4**: open your server → right-click **Databases → Create → Database…** → name `kaaj` (Encoding `UTF8`) → **Save**.
+The backend creates all the tables itself. (With commands: `psql -U postgres -c "CREATE DATABASE kaaj;"`.)
+
 ```powershell
-psql -U postgres -c "CREATE DATABASE kaaj;"
-Copy-Item .env.example .env        # then set DB_PASSWORD in .env
+Copy-Item .env.example .env        # then set DB_PASSWORD in .env (the postgres password pgAdmin uses)
 ```
+
+Every click, from installing PostgreSQL to seeing the tables in pgAdmin: [guide 04, Part 1](Doc/Guides/04_Run_Backend_Web_Android.md#part-1--set-up-postgresql-and-the-database-with-pgadmin-once).
 
 **2. Backend** (port 1027, with demo data; Flyway creates every table)
 

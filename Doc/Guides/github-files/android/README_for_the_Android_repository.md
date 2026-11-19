@@ -34,9 +34,10 @@ The Android app (`android/`) talks to the Spring Boot backend in this repository
 
 ## Run it
 
-You need **JDK 25**, **PostgreSQL** (16 or newer) and **Android Studio**.
+You need **JDK 25**, **PostgreSQL 14 or newer** with **pgAdmin 4**, and **Android Studio**.
 
-1. Create an empty database named `kaaj`, copy `.env.example` to `.env` and set `DB_PASSWORD`.
+1. In **pgAdmin 4**, right-click **Databases → Create → Database…** and create `kaaj` (Encoding `UTF8`). Copy `.env.example` to `.env`
+   and set `DB_PASSWORD` (the `postgres` password pgAdmin uses). The backend creates the tables itself.
 2. Start the backend with the demo data (port **1027**):
    ```powershell
    .\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=dev"
